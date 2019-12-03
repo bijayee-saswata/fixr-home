@@ -7,96 +7,12 @@
           v-bind:key="service.id"
           @click="Services(service.header)"
         >
-        <router-link to="/services/service.header">
           <img :src="service.img" alt="service" />
           <p>{{service.header}}</p>
-        </router-link>
         </li>
       </ul>
 
-      <!-- Modal 
-      <div
-        class="modal fade"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLongTitle">Online Booking Request</h3>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div id="onlineReq">
-                <div>
-                  <div class="well">
-                    <div
-                      v-if="reqSent"
-                      style="color: green"
-                    >Your resonse has been submitted. You will receive a callback from us soon. :)</div>
-                    <form action="#" v-else>
-                      <p v-if="error" style="color:red;">{{errorMsg}}</p>
-                      <div class="input-group">
-                        <input
-                          class="btn btn-lg"
-                          name="bServ"
-                          id="serv"
-                          v-model="bServ"
-                          type="text"
-                          placeholder="Your Service"
-                          required
-                          disabled
-                        />
-                        <input
-                          class="btn btn-lg"
-                          name="bName"
-                          id="name"
-                          type="text"
-                          v-model="bName"
-                          placeholder="Your Name"
-                          required
-                        />
-                        <input
-                          class="btn btn-lg"
-                          name="bPhone"
-                          id="phone"
-                          v-model="bPhone"
-                          type="text"
-                          placeholder="Your Mobile Number"
-                          required
-                        />
-                        <input
-                          class="btn btn-lg"
-                          name="bAddress"
-                          id="address"
-                          v-model="bAddress"
-                          type="text"
-                          placeholder="Your Address"
-                          required
-                        />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button
-                type="button"
-                v-if="!reqSent"
-                class="btn btn-primary"
-                @click="requestCall"
-              >Submit</button>
-            </div>
-          </div>
-        </div>
-      </div>-->
+      
       <!-- house -->
       <section class id="trending1">
         <h3>Home Appliances</h3>
@@ -139,11 +55,10 @@ export default {
   data() {
     return {
       errorMsg: "",
-      service: null,
       services: [
         {
           id: 1,
-          header: "Beauty & Spa",
+          header: "Beauty And Spa",
           subList: "",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fbeauty%26spa%2Fhaircut%2F2.png?alt=media&token=305b0706-02ea-4cb5-9b64-e4505a009d4c"
@@ -180,13 +95,13 @@ export default {
         },
         {
           id: 7,
-          header: "Packer & Mover",
+          header: "Packer And Mover",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fpackers%26movers%2F10.png?alt=media&token=a0c4b8f9-b961-4449-afbf-752661997f44"
         },
         {
           id: 8,
-          header: "Wedding & Events",
+          header: "Wedding And Events",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fevent_management%2Fparty%26event%2F1.png?alt=media&token=9fb434d5-a620-46a1-9928-80dc4591f387"
         }
@@ -248,30 +163,9 @@ export default {
     };
   },
   methods: {
-    // requestCall(e) {
-    //   e.preventDefault();
-    //   if (!this.bName || !this.bPhone || !this.bAddress) {
-    //     this.error = true;
-    //     this.errorMsg = "Please fill all the form.";
-    //   } else if (isNaN(this.bPhone) || this.bPhone.length != 10) {
-    //     this.error = true;
-    //     this.errorMsg = "Please enter 10 digit mobile number.";
-    //     return false;
-    //   } else {
-    //     db.collection("callBack").add({
-    //       service: this.bServ,
-    //       name: this.bName,
-    //       phone: this.bPhone,
-    //       Address: this.bAddress
-    //     });
-    //     // alert("Request sent Successful...");
-    //     // console.log("send");
-    //     this.reqSent = true;
-    //   }
-    // },
     Services(serv) {
-      this.service = serv;
-      this.$router.push({ path: `/services/${this.service}` })
+      serv= serv.replace(/ /g,'');
+      this.$router.push({ path: `/services/#${serv}` })
     }
   },
   mounted() {
@@ -351,9 +245,9 @@ export default {
   text-decoration: none;
   color: #000;
 }
-.wrapper li a:hover{
+.wrapper li:hover{
   font-weight: 800;
-  color: #ccc;
+  background-color: #ccc;
 }
 @media (max-width: 768px) {
   .wrapper {

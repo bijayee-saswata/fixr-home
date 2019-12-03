@@ -18,13 +18,21 @@ Vue.use(VueRouter);
 const routes = [
   {path: '/', component:Home},
   {path: '/services', component:Services},
-  {path: '/services/:id', component:Services,props:true},
+  // {path: '/services/:id', component:Services,props:true},
   {path: '/contact', component:Contact}
 ]
 
+
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior: function(to) {
+    if (to.hash) {
+      return {selector: to.hash}
+    } else {
+      return {x: 0, y: 0}
+    }
+  },
 });
 
 

@@ -32,13 +32,13 @@
           <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
             </li> -->
               <li>
-              <router-link to="/">Home </router-link>
+              <router-link to="/"><i class="fa fa-home" aria-hidden="true"></i> Home </router-link>
             </li>
             <li>
-              <router-link to="/services">Services</router-link>
+              <router-link to="/services"><i class="fa fa-snowflake-o" aria-hidden="true"></i> Services</router-link>
             </li>
             <li>
-              <router-link to="/contact">Contact</router-link>
+              <router-link to="/contact"><i class="fa fa-address-book-o" aria-hidden="true"></i> Contact</router-link>
             </li>
             <li>
               <a href="#"><i class="fa fa-phone" aria-hidden="true" ></i>+91-6370971229</a>
@@ -62,7 +62,7 @@ export default {
 
 .site nav {
   position: fixed;
-  padding: 0.3em 0 0.3em 0;
+  padding: 0.4em 0 0.4em 0;
   top: 0;
   background:var(--main-bg-color);
   width: 100%;
@@ -85,7 +85,7 @@ export default {
 }
 .site nav a{
   color: var(--main-txt-color);
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
 }
 .site nav a:hover {

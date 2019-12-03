@@ -151,9 +151,9 @@ export default {
 </script>
 
 <style scoped>
-footer {
+/* footer {
   margin-top: 3%;
-}
+} */
 p {
   font-family: "Nunito", sans-serif;
   font-size: 16px;

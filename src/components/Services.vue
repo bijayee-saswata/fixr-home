@@ -3,15 +3,15 @@
     <Nav></Nav>
     <div class="sLayout">
       <img src="../assets/sbg.jpeg" alt />
-        <h2>Flat 10% off</h2>
+        <!-- <h2>Flat 10% off</h2> -->
       <!-- <div class="text">
       </div> -->
     </div>
 
     <!-- beauty & spa -->
-    <section class id="trending1">
+    <section id="BeautyAndSpa" class="box">
       <h3 :class="[ BeautySpa ? 'active' : '' ]">Beauty & Spa</h3>
-      <div class>
+      <div>
         <div class="main">
           <div class="slider-nav">
             <div
@@ -20,37 +20,65 @@
               v-bind:key="serv.id"
               data-toggle="modal"
               data-target="#exampleModalCenter"
-              @click="addServices('Beauty-Spa')"
+              @click="addServices(serv.title)"
             >
               <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- cleaning -->
-    <!-- beauty & spa -->
-    <section class id="trending2">
+    <section id="Cleaning" class="box">
       <h3 :class="[ Cleaning ? 'active' : '' ]">Cleaning</h3>
-      <div class>
+      <div>
         <div class="main">
           <div class="slider-nav">
             <div
               class="house"
-              v-for="serv in  serv2"
+              v-for="serv in  serv4"
               v-bind:key="serv.id"
               data-toggle="modal"
               data-target="#exampleModalCenter"
-              @click="addServices('Cleaning')"
+              @click="addServices(serv.title)"
             >
               <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Electronic Gadget -->
+    <section id="ElectronicGadget" class="box">
+      <h3 :class="[ ElectronicGadget ? 'active' : '' ]">Electronic Gadget</h3>
+      <div>
+        <div class="main">
+          <div class="slider-nav">
+            <div
+              class="house"
+              v-for="serv in  serv4"
+              v-bind:key="serv.id"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              @click="addServices(serv.title)"
+            >
+              <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- home Renovation -->
-    <section class id="trending3">
+    <section id="HomeRenovation" class="box">
       <h3 :class="[ HomeRenovation ? 'active' : '' ]">Home Renovation</h3>
       <div>
         <div class="main">
@@ -61,9 +89,12 @@
               v-bind:key="serv.id"
               data-toggle="modal"
               data-target="#exampleModalCenter"
-              @click="addServices('HomeRenovation')"
+              @click="addServices(serv.title)"
             >
               <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
             </div>
           </div>
         </div>
@@ -71,9 +102,9 @@
     </section>
 
     <!-- Appliances-->
-    <section class id="trending3">
+    <section id="HomeAppliances" class="box">
       <h3 :class="[ HomeAppliances ? 'active' : '' ]">Home Appliances</h3>
-      <div class="">
+      <div>
         <div class="main">
           <div class="slider-nav">
             <div
@@ -82,23 +113,97 @@
               v-bind:key="serv.id"
               data-toggle="modal"
               data-target="#exampleModalCenter"
-              @click="addServices('HomeAppliances')"
+              @click="addServices(serv.title)"
             >
               <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+     <!-- Electronic Gadget -->
+    <section id="IndustryService" class="box">
+      <h3 :class="[ IndustryService ? 'active' : '' ]">Industry Service</h3>
+      <div>
+        <div class="main">
+          <div class="slider-nav">
+            <div
+              class="house"
+              v-for="serv in  serv4"
+              v-bind:key="serv.id"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              @click="addServices(serv.title)"
+            >
+              <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Electronic Gadget -->
+    <section id="PackerAndMover" class="box">
+      <h3 :class="[ PackerMover ? 'active' : '' ]">Packer & Mover</h3>
+      <div>
+        <div class="main">
+          <div class="slider-nav">
+            <div
+              class="house"
+              v-for="serv in  serv4"
+              v-bind:key="serv.id"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              @click="addServices(serv.title)"
+            >
+              <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Electronic Gadget -->
+    <section id="WeddingAndEvents" class="box">
+      <h3 :class="[ WeddingEvents ? 'active' : '' ]">Wedding & Events</h3>
+      <div>
+        <div class="main">
+          <div class="slider-nav">
+            <div
+              class="house"
+              v-for="serv in  serv4"
+              v-bind:key="serv.id"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              @click="addServices(serv.title)"
+            >
+              <img :src="serv.img" alt />
+              <div class="text-block">
+                <h4 >{{serv.title}}</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- horizontal scroll card -->
-    <section class id="recommended">
+    <section id="recommended">
       <h3>Recommended Services</h3>
       <div class>
         <div class="main">
           <div class="slider-nav">
             <div class="house" v-for="recm in  recommended" v-bind:key="recm.id">
               <img :src="recm.img" alt />
-              <p>{{recm.title}}</p>
+              <div class="text-block">
+                <h4 >{{recm.title}}</h4>
+              </div>
             </div>
           </div>
         </div>
@@ -187,7 +292,7 @@
         </div>
       </div>
     </div>
-    <FooterLayout />
+    <FooterLayout  class="footer"/>
   </div>
 </template>
 
@@ -212,6 +317,11 @@ export default {
       HomeRenovation: false,
       BeautySpa: false,
       HomeAppliances: false,
+      ElectronicGadget: false,
+      Cleaning: false,
+      IndustryService: false,
+      PackerMover: false,
+      WeddingEvents: false,
       ref: null,
       bName: "",
       bPhone: null,
@@ -252,89 +362,126 @@ export default {
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FMobileRepairing%2FMobileRepair.jpg?alt=media&token=2bd541dd-26b9-40e6-950b-78778c1a0f95"
         }
       ],
-
+    // HomeRenovation
       serv1: [
         {
           id: 1,
+          title: 'Carpenter',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarpenter%2F175660281_1.jpg?alt=media&token=ac150539-1230-4de2-a7ab-26b562e2b681"
         },
         {
           id: 2,
+          title: 'Cleaner',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeCleaning%2Fdac9cf19-daff-40b5-ac96-794ef4c89414.jpg?alt=media&token=2ace202a-06ed-400b-b00b-0ffaadb366a5"
         },
         {
           id: 3,
+          title: 'Plumber',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FPlumber%2Fplumbing%20(1).jpg?alt=media&token=b3d30c1c-c8b7-4ae3-857b-7b0b0ac24127"
         },
         {
           id: 4,
-          title: "Home Spa",
+          title: 'Painter',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FPainting%2Fhome-painting-service-1486720599-2719984.jpeg?alt=media&token=2901895f-44a5-4d82-92f2-01f33e0b1cff"
+        },
+        {
+          id: 5,
+          title: 'Others',
+          img: ''
         }
       ],
-
+      // BeautySpa
       serv2: [
         {
           id: 1,
+          title: 'Facial',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FBridalMakeup%2Fservice.jpg?alt=media&token=2e6db77a-ccd3-44ab-9c6e-7b9aed81f205"
         },
         {
           id: 2,
+          title: 'Manicure',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fimg.jpg?alt=media&token=6340f058-60a8-4ab0-885b-163deafcf136"
         },
         {
           id: 3,
-          img: ""
+          title: 'Pedicure',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fpedicure.jpg?alt=media&token=b754f894-c4c5-4595-bf73-4b5138dfef81"
         },
         {
           id: 4,
-          img: ""
+          title: "Spa",
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fspa.jpg?alt=media&token=a3d129fb-995f-443f-917c-c2ba55f0609c"
+        },
+        {
+          id: 5,
+          title: 'Others',
+          img: ''
         }
       ],
+      // HomeAppliances
       serv3: [
         {
           id: 1,
+          title: 'Title',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fappliances-pic.jpg?alt=media&token=9f3ac601-4b40-4502-a3f8-c86a8d6562a1"
         },
         {
           id: 2,
+          title: 'Title',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fimg.jpg?alt=media&token=af2447b3-2368-4b1e-bd26-54ab9308c2b9"
         },
         {
           id: 3,
+          title: 'Title',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2FElectric-Appliances-Repairs.jpg?alt=media&token=7b10ab91-0b0a-498b-ba35-a42b21e14644"
         },
         {
           id: 4,
+          title: 'Title',
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2F1458744193670.jpeg?alt=media&token=5033117f-90c8-4d21-b45e-3c351289c1b5"
+        },
+        {
+          id: 5,
+          title: 'Others',
+          img: ''
         }
       ],
+      //cleaning
       serv4: [
         {
           id: 1,
-          img: ""
+          title: 'Home-Cleaning',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeCleaning%2Fdac9cf19-daff-40b5-ac96-794ef4c89414.jpg?alt=media&token=2ace202a-06ed-400b-b00b-0ffaadb366a5"
         },
         {
           id: 2,
-          img: ""
+          title: 'Car-Cleaning',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarCleaningRepairing%2Fcar.jpg?alt=media&token=167a6077-7aee-4f77-9e39-44007210d634"
         },
         {
           id: 3,
-          img: ""
+          title: 'Dry-Cleaning',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FDryCleaning%2Fdryclean.jpg?alt=media&token=14257e6d-4913-4a4f-bbe2-97420b2d3396"
         },
         {
           id: 4,
-          img: ""
+          title: 'Utensils-Cleaning',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarCleaningRepairing%2Futensil.jpg?alt=media&token=dbc0a2f1-721d-4789-9087-9c3658b97c24"
+        },
+        {
+          id: 5,
+          title: 'Others',
+          img: ''
         }
       ]
     };
@@ -361,21 +508,55 @@ export default {
       }
     },
     addServices(serv) {
+      this.bName = '';
+      this.bPhone = '';
+      this.bAddress = '';
+      this.reqSent = false;
       this.bServ = serv;
     }
   },
-  created(){
+  /*created(){
+    if(this.id){
      this.ref= this.id.replace(/ /g,'');
     if(this.ref == "HomeRenovation"){
       this.HomeRenovation = true;
+      // document.getElementById('HomeRenovation').scrollIntoView();
     }
     if(this.ref == "Beauty&Spa"){
       this.BeautySpa = true;
+      // document.getElementById('BeautySpa').scrollIntoView();
     }
     if(this.ref == "HomeAppliances"){
       this.HomeAppliances = true;
+      // document.getElementById('HomeAppliances').scrollIntoView();
     }
-    },
+    if(this.ref == "ElectronicGadget"){
+      this.ElectronicGadget = true;
+      // document.getElementById('ElectronicGadget').scrollIntoView();
+    }
+    if(this.ref == "Cleaning"){
+      this.Cleaning = true;
+     // document.getElementById('Cleaning').scrollIntoView();
+    }
+    if(this.ref == "IndustryService"){
+      this.IndustryService = true;
+      //document.getElementById('IndustryService').scrollIntoView();
+    }
+    if(this.ref == "Packer&Mover"){
+      this.PackerMover = true;
+      // location.href = "#";
+      // location.href = "#PackerMover";
+    $('html,body').animate({
+        scrollTop: $("#PackerMover").offset().top},
+        'slow');
+      //$('html, body').animate({ scrollTop: $('#PackerMover').offset().top }, 'slow');
+    }
+    if(this.ref == "Wedding&Events"){
+      this.WeddingEvents = true;
+      // document.getElementById('WeddingEvents').scrollIntoView();
+    }
+    }
+    }, */
     props:[
       'id'
     ],
@@ -383,16 +564,16 @@ export default {
     /* eslint-disable */
    
     $(".slider-nav").not('.slick-initialized').slick({
-      slidesToShow: 4,
+      slidesToShow: 5,
       slidesToScroll: 1,
       autoplay: false,
       autoplaySpeed: 2000,
-      focusOnSelect: true,
+      scrollIntoViewOnSelect: true,
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
             infinite: true,
             dots: true
@@ -427,7 +608,7 @@ export default {
 } */
 .serviceLayout {
   background: rgb(236, 234, 234);
-  padding-top: 4%;
+  padding-top: 3%;
 }
 /* .sLayout{
   
@@ -461,12 +642,11 @@ export default {
       transform: translate(-30%,-45%);
 }
 #recommended,
-#trending1,#trending2,#trending3 {
+.box {
   width: 80%;
   margin-left: 10%;
 }
-#recommended > h3,
-#trending1 > h3 ,#trending2 > h3 ,#trending3 > h3 {
+#recommended > h3,.box> h3{
   text-align: left;
   /* color: #000; */
   font-weight: 600;
@@ -474,11 +654,31 @@ export default {
 .main .house {
   background: #fff;
   margin-right: 5px;
+  height: 10em;
+  position: relative;
 }
 .active{
   color: var(--main-bg-color);
 }
-
+.text-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  /* padding-left: 20px;
+  padding-right: 20px; */
+}
+.text-block h4{
+  position: absolute;
+  font-weight: 500;
+  font-size: 1.2em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
 @media (max-width: 768px) {
   .serviceLayout {
     width: 100%;
@@ -529,6 +729,10 @@ export default {
   border-bottom-right-radius: 0;
   border-radius: 2%;
   box-sizing: border-box;
+}
+
+.footer{
+  margin-top: var(--main-margin);
 }
 
 @media (max-width: 768px) {

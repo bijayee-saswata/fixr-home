@@ -66,7 +66,7 @@
         </div>
       </section>
       <!-- Customer reviews -->
-
+      <!-- <div><i class="fa fa-snowflake-o" aria-hidden="true" style="position:fixed;top:80%;right:1.5%;"></i></div> -->
       <!-- Footer Section -->
       <FooterLayout />
     </div>
@@ -125,7 +125,7 @@ export default {
 /* @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; */
 
 .layout {
-  padding-top: 4%;
+  padding-top: 3%;
   /* margin-top: 6%; */
   height: 100%;
   -webkit-font-smoothing: antialiased;
@@ -184,6 +184,7 @@ export default {
 /* quality */
 .quality .container {
   margin-top: var(--main-margin);
+  margin-bottom: var(--main-margin);
   /* border-right: 1px groove lightgray;
   border-left: 1px groove lightgray; */
   text-align: center;
@@ -191,6 +192,7 @@ export default {
 .quality .col-md-4 h3 {
   color: #000;
   font-weight: 500;
+  font-size: 1.5em;
 }
 .quality .fa {
   color: var(--main-bg-color);

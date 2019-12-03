@@ -23,7 +23,7 @@ html {
 }
 .loaderClass {
   height: 100vh;
-  background: linear-gradient(var(--main-bg-color), rgb(110, 202, 255));
+  background: var(--main-bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@ html {
   bottom: 0;
   width: 10px;
   height: 50%;
-  background: #000;
+  background: #fff;
   -webkit-transform-origin: center bottom;
   transform-origin: center bottom;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
