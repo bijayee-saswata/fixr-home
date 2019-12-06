@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="layout" id="top">
-      <Nav></Nav>
+
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -67,23 +67,20 @@
       </section>
       <!-- Customer reviews -->
       <!-- <div><i class="fa fa-snowflake-o" aria-hidden="true" style="position:fixed;top:80%;right:1.5%;"></i></div> -->
-      <!-- Footer Section -->
-      <FooterLayout />
+      
     </div>
   </header>
 </template>
 
 <script>
-import Nav from "./Nav";
+
 import ServiceComponent from "./serviceComponent.vue";
 //import allServices from './allServices'
-import FooterLayout from "./Footer";
+
 export default {
   name: "Home",
   components: {
-    Nav,
-    ServiceComponent,
-    FooterLayout
+    ServiceComponent
   },
 
   created() {
@@ -192,7 +189,7 @@ export default {
 .quality .col-md-4 h3 {
   color: #000;
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 .quality .fa {
   color: var(--main-bg-color);
@@ -203,7 +200,7 @@ export default {
 }
 @media (max-width:760px) {
   .quality h3{
-    font-size: 1em;
+    font-size: 0.5em;
   }
 }
 </style>

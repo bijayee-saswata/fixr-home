@@ -1,12 +1,11 @@
 <template>
-  <div class="serviceLayout">
-    <Nav></Nav>
-    <div class="sLayout">
+  <div class="Layout">
+    <section class="sLayout">
       <img src="../assets/sbg.jpeg" alt />
         <!-- <h2>Flat 10% off</h2> -->
       <!-- <div class="text">
       </div> -->
-    </div>
+    </section>
 
     <!-- beauty & spa -->
     <section id="BeautyAndSpa" class="box">
@@ -292,7 +291,6 @@
         </div>
       </div>
     </div>
-    <FooterLayout  class="footer"/>
   </div>
 </template>
 
@@ -301,16 +299,9 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
-import Nav from "./Nav";
 import db from "../firebaseinit";
-import FooterLayout from "./Footer";
 export default {
   name: "Services",
-
-  components: {
-    Nav,
-    FooterLayout
-  },
   data() {
     return {
       reqSent: false,
@@ -557,9 +548,6 @@ export default {
     }
     }
     }, */
-    props:[
-      'id'
-    ],
   mounted() {
     /* eslint-disable */
    
@@ -606,20 +594,10 @@ export default {
   padding: 0%;
   margin: 0%;
 } */
-.serviceLayout {
+.Layout {
   background: rgb(236, 234, 234);
-  padding-top: 3%;
+  margin-top: 3%;
 }
-/* .sLayout{
-  
-} */
-
-/* .sLayout img {
-  padding-top: 4%;
-  width: 80%;
-  height: 50vh;
-  object-fit: cover;
-} */
 
 .sLayout{
   width: 80%;
@@ -680,7 +658,7 @@ export default {
   transform: translate(-50%,-50%);
 }
 @media (max-width: 768px) {
-  .serviceLayout {
+  .Layout {
     width: 100%;
     padding-top: 20%;
   }
@@ -697,13 +675,6 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .sLayout  h2{
-   position: absolute; 
-      color: aqua;
-      top: 35%;
-      left: 45%;
-      transform: translate(-35%,-45%);
-}
   #recommended > h3,
   #trending1 > h3 {
     text-align: center;
@@ -731,9 +702,6 @@ export default {
   box-sizing: border-box;
 }
 
-.footer{
-  margin-top: var(--main-margin);
-}
 
 @media (max-width: 768px) {
   .well input.btn.btn-lg {

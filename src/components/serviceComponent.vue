@@ -208,10 +208,6 @@ export default {
 </script>
 
 <style scoped>
-/* .sLayout{
-  width: 80%;
-  margin-left: 10%;
-} */
 .wrapper {
   margin-top: 1%;
   width: 80%;

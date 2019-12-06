@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <loader v-if="loading" />
-    <transition name="moveInUp" v-else> <router-view/>  </transition>
+    <Nav v-if="!loading"></Nav>
+    <transition name="moveInUp" v-if="!loading">
+      <router-view/>
+    </transition>
+    <!-- Footer Section -->
+      <FooterLayout class="footer" v-if="!loading" />
   </div>
 </template>
 
 <script>
 
-import loader from './components/loader'
+import loader from './components/loader';
+import Nav from "./components/Nav";
+import FooterLayout from "./components/Footer";
 export default {
   name: 'app',
   components: {
-    loader
+    loader,
+    FooterLayout,
+    Nav
   },
   data(){
     return{
@@ -45,6 +54,9 @@ export default {
   font-family: 'Open Sans', sans-serif;
   scroll-behavior: smooth;
   background: #f1f3f6;
+}
+.footer{
+  margin-top: 3%;
 }
 /* .moveInUp-enter-active{  opacity: 0;  transition: opacity 1s ease-in;} */
 .moveInUp-enter-active{  animation: fadeIn 1s ease-in;}@keyframes fadeIn{  0%{    opacity: 0;  }  50%{    opacity: 0.5;  }  100%{    opacity: 1;  }}

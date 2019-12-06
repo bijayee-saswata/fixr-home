@@ -1,5 +1,4 @@
 <template>
-  <section class="site">
     <nav class="navbar navbar-default">
       <div class="nLayout">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,7 +48,7 @@
       </div>
       <!-- /.container-->
     </nav>
-  </section>
+
 </template>
 
 <script>
@@ -60,37 +59,39 @@ export default {
 
 <style scoped>
 
-.site nav {
+nav {
   position: fixed;
-  padding: 0.4em 0 0.4em 0;
+  /* padding: 0.4em 0 0.4em 0; */
   top: 0;
   background:var(--main-bg-color);
   width: 100%;
   text-transform: uppercase;
   z-index: 20;
+  margin: 0;
 }
-.site .nLayout{
+.nLayout{
   width: 80%;
   margin-left: 10%;
 }
-.site .navbar-brand{
+.navbar-brand{
   /* filter: invert(3); */
    padding: 0;
    margin: 0;
 }
 
-.site .navbar-brand img{
+.navbar-brand img{
   width: 90px;
   height: 60px;
 }
-.site nav a{
-  color: var(--main-txt-color);
+
+nav a{
   font-size: 1em;
   font-weight: 600;
+  color:#fff !important;
 }
-.site nav a:hover {
-  /* border-bottom: 2px solid #000; */
-  color:#ccc;
+nav a:hover {
+  color: #000;
+
 } 
 @media (max-width:760px) {
   #navbar-collapse{
