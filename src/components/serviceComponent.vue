@@ -1,6 +1,7 @@
 <template>
   <div class="sLayout">
-    <div class>
+    <section id="home">
+      <h3>Services We Provide</h3>
       <ul class="wrapper">
         <li
           v-for="service in services"
@@ -11,23 +12,8 @@
           <p>{{service.header}}</p>
         </li>
       </ul>
-
+    </section>
       
-      <!-- house -->
-      <section class id="trending1">
-        <h3>Home Appliances</h3>
-        <div class="main">
-          <div class="slider-nav">
-            <div
-              v-for="serv in serv1"
-              v-bind:key="serv.id"
-              class="house"
-            >
-              <img :src="serv.img" alt />
-            </div>
-          </div>
-        </div>
-      </section>
       <!-- horizontal scroll card -->
       <section class id="recommended">
         <h3>Recommended Services</h3>
@@ -40,7 +26,21 @@
           </div>
         </div>
       </section>
-    </div>
+      <!-- house -->
+      <section class id="trending1">
+        <h3>Special Offers</h3>
+        <div class="main">
+          <div class="slider-nav">
+            <div
+              v-for="serv in serv1"
+              v-bind:key="serv.id"
+              class="house"
+            >
+              <img :src="serv.img" alt />
+            </div>
+          </div>
+        </div>
+      </section>
   </div>
 </template>
 
@@ -49,7 +49,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
 
-// import db from "../firebaseinit";
 export default {
   name: "ServicesComponent",
   data() {
@@ -58,7 +57,7 @@ export default {
       services: [
         {
           id: 1,
-          header: "Beauty And Spa",
+          header: "Makeup And Hairstyle",
           subList: "",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fbeauty%26spa%2Fhaircut%2F2.png?alt=media&token=305b0706-02ea-4cb5-9b64-e4505a009d4c"
@@ -71,25 +70,24 @@ export default {
         },
         {
           id: 3,
-          header: "Electronic Gadget",
+          header: "Electronics And IT",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Felectronic_gadget%2F3.png?alt=media&token=103a7625-b6f8-4ad3-8a52-494163e77626"
         },
         {
           id: 4,
-          header: "Home Renovation",
+          header: "Repairing And Renovation",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fhouse_renovation%2Fpainter%2F2.png?alt=media&token=cb28e0b2-c77b-4c96-a919-29c1d34bec9d"
         },
         {
           id: 5,
-          header: "Home Service",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fhome_delivery%2F3.png?alt=media&token=5c5976fb-cc5a-4cab-848e-d810894c2879"
+          header: "Home Appliances",
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fhouse_appliance%2F2.png?alt=media&token=8c4e37c1-45ee-4477-97cc-8671fb0243be"
         },
         {
           id: 6,
-          header: "Industry Service",
+          header: "Corporate Service",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Findustry_service%2Fsecurity%2F3.png?alt=media&token=7bd03af8-fdff-4648-8dc6-8434e42ff321"
         },
@@ -101,7 +99,7 @@ export default {
         },
         {
           id: 8,
-          header: "Wedding And Events",
+          header: "Event Management",
           img:
             "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fevent_management%2Fparty%26event%2F1.png?alt=media&token=9fb434d5-a620-46a1-9928-80dc4591f387"
         }
@@ -110,54 +108,48 @@ export default {
         {
           id: 1,
           title: "Home Renovation",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAC%2F1-0t-magicool-inverter-3s-copr-w-i-odu-1-0-split-whirlpool-original-imaffkcnbu8a3dhe.jpeg?alt=media&token=6795be02-cbe6-4bd8-986a-0fcc23fff37b"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F22.Plumbing%2F4Q2EYRR2XMI6TMIL6BNCFZ2YMU.jpg?alt=media&token=5556ea1c-6996-4c89-8ecc-9305e5367b80"
         },
         {
           id: 2,
           title: "Home Appliances",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2FAppliance-repair-san-antonio-44.jpg?alt=media&token=d06c41ca-743a-4c15-a948-8412fa73c43b"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F11.Air%20conditioner%2Fpel-air-conditioners-top-banner.jpg?alt=media&token=28bf29a3-23e7-4917-b770-51b2500dd079"
         },
         {
           id: 3,
           title: "Electricians",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FTechnicians%2FHandyman-Electrical-Services-In-Dubai.jpg?alt=media&token=c18579aa-307e-4d97-8b19-ec41c2acd3b1"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F21.Electrical%2Fselection-314-500x500.png?alt=media&token=7cace71e-d6b3-4062-85f0-c617abfb2203"
         },
         {
           id: 4,
           title: "Home Spa",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2FHeader-1200x490.jpg?alt=media&token=cb77b2d9-ea8c-492c-a0ab-b165ef9adb63"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F52.Party%20Makeup%2FHeader-1200x490.jpg?alt=media&token=56702d82-3a0d-48b0-ad0f-1bde95b9a195"
         },
         {
           id: 5,
           title: "Mobile Repairing",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FMobileRepairing%2FMobileRepair.jpg?alt=media&token=2bd541dd-26b9-40e6-950b-78778c1a0f95"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
         }
       ],
       serv1: [
         {
           id: 1,
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fappliances-pic.jpg?alt=media&token=9f3ac601-4b40-4502-a3f8-c86a8d6562a1"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
         },
         {
           id: 2,
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fimg.jpg?alt=media&token=af2447b3-2368-4b1e-bd26-54ab9308c2b9"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
+
         },
         {
           id: 3,
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2FElectric-Appliances-Repairs.jpg?alt=media&token=7b10ab91-0b0a-498b-ba35-a42b21e14644"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
+
         },
         {
           id: 4,
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2F1458744193670.jpeg?alt=media&token=5033117f-90c8-4d21-b45e-3c351289c1b5"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
+
         }
       ]
     };
@@ -220,15 +212,15 @@ export default {
 }
 .wrapper li {
   background-color: #fff;
-  max-height: 12em;
+  height: 10em;
   list-style: none;
   /* box-shadow: 4px 4px 4px rgba(10, 100, 150, 0.2);
     border-radius: 3%; */
   cursor: pointer;
 }
 .wrapper li img {
-  max-width: 30%;
-  height: auto;
+  max-width: 50%;
+  height: 6.2em;
   /* max-width: 100%;
     max-height: 100%; */
   padding: 5%;
@@ -254,7 +246,7 @@ export default {
     padding: 0;
   }
   .wrapper li img {
-    width: 80%;
+    max-width: 90% !important;
   }
 }
 #recommended,
@@ -269,7 +261,10 @@ export default {
   color: #000;
   font-weight: 600;
 }
-
+#home h3{
+   color: #000;
+  font-weight: 600;
+}
 @media (max-width: 768px) {
   #recommended > h3,
   #trending1 > h3 {

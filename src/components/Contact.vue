@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Nav></Nav>
     <div class="container-fluid card">
       <div class="col-md-12 col-lg-12 col-xs-12">
         <div class="contact-heading">
@@ -11,14 +10,8 @@
           <img src="../assets/contact.png" alt="Contact us">
       </div>
       <div class="col-md-6 col-lg-4 col-lg-offset-1 col-xs-12" id="formBox">
-        <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+        <form name="contact">
           <div class="row">
-            <p class="hidden">
-              <label>
-                Don’t fill this out if you're human:
-                <input name="bot-field" />
-              </label>
-            </p>
             <h2>Send Us a Message</h2>
             <div class="col-sm-12 form-group">
               <input
@@ -43,15 +36,11 @@
               />
             </div>
             <div class="col-sm-12 form-group">
-              <input
-                class="form-control"
-                id="address"
-                name="address"
-                placeholder="Address"
-                v-model="form.address"
-                type="text"
-                required
-              />
+              <select name="msgType" id="" class="form-control" v-model="form.msgType">
+                <option value="Complaint">Complaint</option>
+                <option value="Partner">Be a Partner</option>
+                <option value="Others">Others</option>
+              </select>
             </div>
           </div>
           <textarea
@@ -76,48 +65,36 @@
       </div>
       
     </div>
-    <FooterLayout />
   </div>
 </template>
 
 <script>
-import Nav from "./Nav";
-import FooterLayout from "./Footer";
+import db from "../firebaseinit";
 export default {
   name: "Contact",
-  components: {
-    Nav,
-    FooterLayout
-  },
   data() {
     return {
       form: {
         name: "",
         phone: "",
-        address: "",
+        msgType: "Complaint",
         message: ""
       }
     };
   },
   methods: {
-    encode(data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join("&");
-    },
     handleSubmit() {
-      fetch("/", {
-        method: "post",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: this.encode({ "form-name": "contact", ...this.form })
-      })
+    db.collection("feedBacks").add({
+          name: this.form.name,
+          phone: this.form.phone,
+          msgType: this.form.msgType,
+          message: this.form.message
+        })
         .then(() => {
           alert("Success!");
           this.form.name = "";
           this.form.phone = "";
-          this.form.address = "";
+          this.form.type = "Complaint";
           this.form.message = "";
         })
         .catch(error => alert(error));

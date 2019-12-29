@@ -8,8 +8,8 @@
     </section>
 
     <!-- beauty & spa -->
-    <section id="BeautyAndSpa" class="box">
-      <h3 :class="[ BeautySpa ? 'active' : '' ]">Beauty & Spa</h3>
+    <section id="MakeupAndHairstyle" class="box">
+      <h3>Makeup & Hairstyle</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -32,7 +32,7 @@
     </section>
     <!-- cleaning -->
     <section id="Cleaning" class="box">
-      <h3 :class="[ Cleaning ? 'active' : '' ]">Cleaning</h3>
+      <h3>Cleaning</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -54,8 +54,8 @@
       </div>
     </section>
     <!-- Electronic Gadget -->
-    <section id="ElectronicGadget" class="box">
-      <h3 :class="[ ElectronicGadget ? 'active' : '' ]">Electronic Gadget</h3>
+    <section id="ElectronicsAndIT" class="box">
+      <h3>Electronics & IT</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -77,8 +77,8 @@
       </div>
     </section>
     <!-- home Renovation -->
-    <section id="HomeRenovation" class="box">
-      <h3 :class="[ HomeRenovation ? 'active' : '' ]">Home Renovation</h3>
+    <section id="RepairingAndRenovation" class="box">
+      <h3>Repairing & Renovation</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -102,7 +102,7 @@
 
     <!-- Appliances-->
     <section id="HomeAppliances" class="box">
-      <h3 :class="[ HomeAppliances ? 'active' : '' ]">Home Appliances</h3>
+      <h3>Home Appliances</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -124,8 +124,8 @@
       </div>
     </section>
      <!-- Electronic Gadget -->
-    <section id="IndustryService" class="box">
-      <h3 :class="[ IndustryService ? 'active' : '' ]">Industry Service</h3>
+    <section id="CorporateService" class="box">
+      <h3>Corporate Service</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -148,7 +148,7 @@
     </section>
     <!-- Electronic Gadget -->
     <section id="PackerAndMover" class="box">
-      <h3 :class="[ PackerMover ? 'active' : '' ]">Packer & Mover</h3>
+      <h3>Packer & Mover</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -170,8 +170,8 @@
       </div>
     </section>
     <!-- Electronic Gadget -->
-    <section id="WeddingAndEvents" class="box">
-      <h3 :class="[ WeddingEvents ? 'active' : '' ]">Wedding & Events</h3>
+    <section id="EventManagement" class="box">
+      <h3>Event Management</h3>
       <div>
         <div class="main">
           <div class="slider-nav">
@@ -252,7 +252,7 @@
                         v-model="bName"
                         id="name"
                         type="text"
-                        placeholder="Your Name"
+                        placeholder="Name"
                         required
                       />
                       <input
@@ -261,18 +261,54 @@
                         id="phone"
                         v-model="bPhone"
                         type="text"
-                        placeholder="Your Mobile Number"
+                        placeholder="Mobile Number"
+                        required                                                                                                                                                      
+                      />
+                      <input
+                        class="btn btn-lg"
+                        name="bPlot"                                                                                                                                                                                                                                                            
+                        id="plot"
+                        v-model="bPlot"
+                        type="text"
+                        placeholder="Plot No."
                         required
                       />
                       <input
                         class="btn btn-lg"
-                        name="bAddress"
-                        id="address"
-                        v-model="bAddress"
+                        name="bLocality"
+                        id="locality"
+                        v-model="bLocality"
                         type="text"
-                        placeholder="Your Address"
+                        placeholder="Locality"
                         required
                       />
+                      <input
+                        class="btn btn-lg"
+                        name="bCity"
+                        id="city"
+                        v-model="bCity"
+                        type="text"
+                        disabled
+                        required
+                      />
+                      <input
+                        class="btn btn-lg"
+                        name="bPin"
+                        id="pin"
+                        v-model="bPin"
+                        placeholder="Pin Code"
+                        type="text"
+                        required
+                      />
+                      <div>
+                        <input type="date" class="btn btn-sm" name="date" v-model="bDate" required>
+                        <select name="slot" id="slot" v-model="bSlot" class="btn btn-sm">
+                            <option value="10AM-12PM">10AM - 12PM</option>
+                            <option value="10AM-12PM">12PM - 02PM</option>
+                            <option value="10AM-12PM">02PM - 04PM</option>
+                            <option value="10AM-12PM">04PM - 06PM</option>
+                        </select>
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -286,7 +322,7 @@
               class="btn btn-primary"
               v-if="!reqSent"
               @click="requestCall"
-            >Submit</button>
+            >Book Now</button>
           </div>
         </div>
       </div>
@@ -305,18 +341,15 @@ export default {
   data() {
     return {
       reqSent: false,
-      HomeRenovation: false,
-      BeautySpa: false,
-      HomeAppliances: false,
-      ElectronicGadget: false,
-      Cleaning: false,
-      IndustryService: false,
-      PackerMover: false,
-      WeddingEvents: false,
       ref: null,
       bName: "",
       bPhone: null,
-      bAddress: null,
+      bPlot: null,
+      bLocality: null,
+      bCity: "Bhubaneswar",
+      bPin: null,
+      bDate: null,
+      bSlot: "10AM-12PM",
       bServ: null,
       error: false,
       serv: null,
@@ -324,90 +357,89 @@ export default {
       recommended: [
         {
           id: 1,
-          title: "Home Appliances",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAC%2F1-0t-magicool-inverter-3s-copr-w-i-odu-1-0-split-whirlpool-original-imaffkcnbu8a3dhe.jpeg?alt=media&token=6795be02-cbe6-4bd8-986a-0fcc23fff37b"
+          title: "Home Renovation",
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F22.Plumbing%2F4Q2EYRR2XMI6TMIL6BNCFZ2YMU.jpg?alt=media&token=5556ea1c-6996-4c89-8ecc-9305e5367b80"
         },
         {
           id: 2,
-          title: "Washing Machine",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2FAppliance-repair-san-antonio-44.jpg?alt=media&token=d06c41ca-743a-4c15-a948-8412fa73c43b"
+          title: "Home Appliances",
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F11.Air%20conditioner%2Fpel-air-conditioners-top-banner.jpg?alt=media&token=28bf29a3-23e7-4917-b770-51b2500dd079"
         },
         {
           id: 3,
           title: "Electricians",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FTechnicians%2FHandyman-Electrical-Services-In-Dubai.jpg?alt=media&token=c18579aa-307e-4d97-8b19-ec41c2acd3b1"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F21.Electrical%2Fselection-314-500x500.png?alt=media&token=7cace71e-d6b3-4062-85f0-c617abfb2203"
         },
         {
           id: 4,
           title: "Home Spa",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2FHeader-1200x490.jpg?alt=media&token=cb77b2d9-ea8c-492c-a0ab-b165ef9adb63"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F52.Party%20Makeup%2FHeader-1200x490.jpg?alt=media&token=56702d82-3a0d-48b0-ad0f-1bde95b9a195"
         },
         {
           id: 5,
           title: "Mobile Repairing",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FMobileRepairing%2FMobileRepair.jpg?alt=media&token=2bd541dd-26b9-40e6-950b-78778c1a0f95"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F32.Mobile%20%26%20Tablet%2Fsmart-phone-repair-training-course-service-500x500.png?alt=media&token=74b9bafd-fdfb-4195-94e4-d1e17e8d6882"
         }
       ],
     // HomeRenovation
       serv1: [
         {
           id: 1,
-          title: 'Carpenter',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarpenter%2F175660281_1.jpg?alt=media&token=ac150539-1230-4de2-a7ab-26b562e2b681"
+          title: 'Electrical',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F21.Electrical%2Fselection-314-500x500.png?alt=media&token=7cace71e-d6b3-4062-85f0-c617abfb2203"
         },
         {
           id: 2,
-          title: 'Cleaner',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeCleaning%2Fdac9cf19-daff-40b5-ac96-794ef4c89414.jpg?alt=media&token=2ace202a-06ed-400b-b00b-0ffaadb366a5"
+          title: 'Interior Design',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F25.Interior%20Design%2Fslide1.jpg?alt=media&token=0fd2e993-3cc7-4716-a9d6-cc39bffaf4f9"
         },
         {
           id: 3,
           title: 'Plumber',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FPlumber%2Fplumbing%20(1).jpg?alt=media&token=b3d30c1c-c8b7-4ae3-857b-7b0b0ac24127"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F22.Plumbing%2F4Q2EYRR2XMI6TMIL6BNCFZ2YMU.jpg?alt=media&token=5556ea1c-6996-4c89-8ecc-9305e5367b80"
         },
         {
           id: 4,
           title: 'Painter',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FPainting%2Fhome-painting-service-1486720599-2719984.jpeg?alt=media&token=2901895f-44a5-4d82-92f2-01f33e0b1cff"
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F24.Painting%2Fabirchcreekinn-paint.jpg?alt=media&token=0e8ac13c-0170-4168-9fd9-b70e17dfe255"
         },
         {
           id: 5,
-          title: 'Others',
-          img: ''
-        }
+          title: 'Carpenter',
+          img: 'https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F23.Carpentry%2Fcarpentry-2.jpg?alt=media&token=659243af-ec2b-4e08-9485-7d1519fb4b89'
+        },
+        {
+          id: 6,
+          title: 'Pest Control',
+          img: 'https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F26.Pest%20Control%2Fpest-control-hubali3.jpg?alt=media&token=1220164a-89b2-433c-841a-76ad0808965e'
+        },
+        {
+          id: 7,
+          title: 'Packer & Mover',
+          img : 'https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F72.Moving%20Home%2Fpackers-and-movers-pune.jpg?alt=media&token=ea8b25a3-c2ca-43d3-9036-cebb76eedbac'
+        },
       ],
       // BeautySpa
       serv2: [
         {
           id: 1,
-          title: 'Facial',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FBridalMakeup%2Fservice.jpg?alt=media&token=2e6db77a-ccd3-44ab-9c6e-7b9aed81f205"
+          title: 'Bridal Makeup',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F51.Bridal%20Makeup%2Fbridal-makeup_homebanner.jpg?alt=media&token=3d088564-b4ff-45ec-95a4-8601d12527bc"
         },
         {
           id: 2,
-          title: 'Manicure',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fimg.jpg?alt=media&token=6340f058-60a8-4ab0-885b-163deafcf136"
+          title: 'Hairstyling',
+          img: ""
         },
         {
           id: 3,
-          title: 'Pedicure',
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fpedicure.jpg?alt=media&token=b754f894-c4c5-4595-bf73-4b5138dfef81"
+          title: 'Party Makeup',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F52.Party%20Makeup%2FHeader-1200x490.jpg?alt=media&token=56702d82-3a0d-48b0-ad0f-1bde95b9a195"
         },
         {
           id: 4,
-          title: "Spa",
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeSpa%2Fspa.jpg?alt=media&token=a3d129fb-995f-443f-917c-c2ba55f0609c"
+          title: 'Others',
+          img: ''
         },
         {
           id: 5,
@@ -419,60 +451,71 @@ export default {
       serv3: [
         {
           id: 1,
-          title: 'Title',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fappliances-pic.jpg?alt=media&token=9f3ac601-4b40-4502-a3f8-c86a8d6562a1"
-        },
+          title: 'Air Conditioner',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F11.Air%20conditioner%2Fpel-air-conditioners-top-banner.jpg?alt=media&token=dc0e9b2d-491d-4cfa-a405-0e9b56873f7e"
+        }, 
         {
           id: 2,
-          title: 'Title',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2Fimg.jpg?alt=media&token=af2447b3-2368-4b1e-bd26-54ab9308c2b9"
+          title: 'Fridge',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F12.Refrigerator%2Frefrigerator-700x350.jpg?alt=media&token=c87d3208-7255-4e13-bce5-d2f6623e44c4"
         },
         {
           id: 3,
-          title: 'Title',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2FElectric-Appliances-Repairs.jpg?alt=media&token=7b10ab91-0b0a-498b-ba35-a42b21e14644"
+          title: 'Washing Machine',
+          img:"https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F13.washing%20Machine%2Fwashing%20machine.jpg?alt=media&token=b4f03ad5-47da-4a07-ab6e-277dac4c16d5"
         },
         {
           id: 4,
-          title: 'Title',
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FAppliances%2F1458744193670.jpeg?alt=media&token=5033117f-90c8-4d21-b45e-3c351289c1b5"
+          title: 'Television',
+          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F14.Television%2Ffeatured-tv-home-theatre-setup.jpg?alt=media&token=a6d7a7d8-c2e1-4752-9608-3b1661d57a19"
         },
         {
           id: 5,
-          title: 'Others',
-          img: ''
-        }
+          title: 'DTH or Setup Box',
+          img: 'https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F15.%20DTH%20or%20SETUP%20Box%2Fdth-250x250.jpg?alt=media&token=8a97d26c-657e-495c-b8b7-8a401ca515d8'
+        },
+        {
+          id: 6,
+          title: 'Water Purifier',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F16.Water%20Purifier%2Fmoonbow-blog-300-min.jpg?alt=media&token=867493b2-6ed9-4ae4-8212-a69745fb26eb"
+        },
+        {
+          id: 7,
+          title: 'Geyser',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F17.Geyser%2Fgeyser.jpg?alt=media&token=a86a3a2f-6429-4d28-90f2-e4f19db81324"
+        },
+        {
+          id: 8,
+          title: 'Microwave Oven',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F18.Microwave%20Oven%2Foven.jpg?alt=media&token=dac0ff21-6581-498d-9e7b-f5dc8bdd6979"
+        },
       ],
       //cleaning
       serv4: [
         {
           id: 1,
-          title: 'Home-Cleaning',
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FHomeCleaning%2Fdac9cf19-daff-40b5-ac96-794ef4c89414.jpg?alt=media&token=2ace202a-06ed-400b-b00b-0ffaadb366a5"
+          title: 'Dry Cleaning',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F41.Dry%20Cleaning%2Fdry%20cleaning.jpg?alt=media&token=512a3415-09ce-4866-b667-cc431d8643c2"
         },
         {
           id: 2,
-          title: 'Car-Cleaning',
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarCleaningRepairing%2Fcar.jpg?alt=media&token=167a6077-7aee-4f77-9e39-44007210d634"
+          title: 'Home Deep Cleaning',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F42.Home%20Deep%20Cleaning%2Fdeep%20cleaning.jpg?alt=media&token=88ec78cd-6e65-4ea7-a814-bd896e453852"
         },
         {
           id: 3,
-          title: 'Dry-Cleaning',
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FDryCleaning%2Fdryclean.jpg?alt=media&token=14257e6d-4913-4a4f-bbe2-97420b2d3396"
+          title: 'Bathroom Cleaning',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F43.Bathroom%20Cleaning%2Fbathroom.jpg?alt=media&token=274df9ae-cc65-43c1-b860-e87ef7c4b23b"
         },
         {
           id: 4,
-          title: 'Utensils-Cleaning',
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2FCarCleaningRepairing%2Futensil.jpg?alt=media&token=dbc0a2f1-721d-4789-9087-9c3658b97c24"
+          title: 'Sofa Cleaning',
+          img : "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F44.Sofa%20Cleaning%2Fsofa-cleaning.jpg?alt=media&token=6e844da9-d378-41cc-bd0c-b05acc8d8073"
         },
         {
           id: 5,
-          title: 'Others',
-          img: ''
+          title: 'Car Cleaning',
+          img: 'https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/images%2F45.Car%20Cleaning%2Fcar.jpg?alt=media&token=8f57a476-81eb-4657-9dfe-bffe0e90a136'
         }
       ]
     };
@@ -480,7 +523,7 @@ export default {
   methods: {
     requestCall(e) {
       e.preventDefault();
-      if (!this.bName || !this.bPhone || !this.bAddress) {
+      if (!this.bName || !this.bPhone) {
         this.error = true;
         this.errorMsg = "Please fill all the form.";
       } else if (isNaN(this.bPhone) || this.bPhone.length != 10) {
@@ -492,7 +535,7 @@ export default {
           service: this.bServ,
           name: this.bName,
           phone: this.bPhone,
-          Address: this.bAddress
+          Address: `${this.bPlot}, ${this.bLocality}, ${this.bCity}, ${this.bPin},${this.bDate}, ${this.bSlot}`
         });
         // alert("Request sent Successful...");
         this.reqSent = true;
@@ -501,53 +544,14 @@ export default {
     addServices(serv) {
       this.bName = '';
       this.bPhone = '';
-      this.bAddress = '';
+      this.bPlot = '';
+      this.bPin = '';
+      this.bLocality = '';
       this.reqSent = false;
       this.bServ = serv;
     }
   },
-  /*created(){
-    if(this.id){
-     this.ref= this.id.replace(/ /g,'');
-    if(this.ref == "HomeRenovation"){
-      this.HomeRenovation = true;
-      // document.getElementById('HomeRenovation').scrollIntoView();
-    }
-    if(this.ref == "Beauty&Spa"){
-      this.BeautySpa = true;
-      // document.getElementById('BeautySpa').scrollIntoView();
-    }
-    if(this.ref == "HomeAppliances"){
-      this.HomeAppliances = true;
-      // document.getElementById('HomeAppliances').scrollIntoView();
-    }
-    if(this.ref == "ElectronicGadget"){
-      this.ElectronicGadget = true;
-      // document.getElementById('ElectronicGadget').scrollIntoView();
-    }
-    if(this.ref == "Cleaning"){
-      this.Cleaning = true;
-     // document.getElementById('Cleaning').scrollIntoView();
-    }
-    if(this.ref == "IndustryService"){
-      this.IndustryService = true;
-      //document.getElementById('IndustryService').scrollIntoView();
-    }
-    if(this.ref == "Packer&Mover"){
-      this.PackerMover = true;
-      // location.href = "#";
-      // location.href = "#PackerMover";
-    $('html,body').animate({
-        scrollTop: $("#PackerMover").offset().top},
-        'slow');
-      //$('html, body').animate({ scrollTop: $('#PackerMover').offset().top }, 'slow');
-    }
-    if(this.ref == "Wedding&Events"){
-      this.WeddingEvents = true;
-      // document.getElementById('WeddingEvents').scrollIntoView();
-    }
-    }
-    }, */
+  
   mounted() {
     /* eslint-disable */
    
@@ -693,7 +697,7 @@ export default {
 }
 
 .well input.btn.btn-lg {
-  height: 60px;
+  height: 40px;
   width: 100%;
   margin: 1%;
   border-top-right-radius: 0;
@@ -701,10 +705,21 @@ export default {
   border-radius: 2%;
   box-sizing: border-box;
 }
-
+.well .btn.btn-sm{
+  height: 40px;
+  width: 49%;
+  margin-left: 1%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-radius: 2%;
+  box-sizing: border-box;
+}
 
 @media (max-width: 768px) {
   .well input.btn.btn-lg {
+    width: 100%;
+  }
+  .well .btn.btn-sm{
     width: 100%;
   }
 }

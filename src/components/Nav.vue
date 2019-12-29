@@ -15,11 +15,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/" style="color: black;">
-            <img
+          <a class="navbar-brand" href="/">
+            <!-- <img
               src="https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/fixr%20logo.png?alt=media&token=ff5a93a2-22bc-47cd-aa5f-e91a9d17d137"
               alt="logo"
-            />
+            /> -->
+            Fixr
           </a>
         </div>
 
@@ -38,9 +39,6 @@
             </li>
             <li>
               <router-link to="/contact"><i class="fa fa-address-book-o" aria-hidden="true"></i> Contact</router-link>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-phone" aria-hidden="true" ></i>+91-6370971229</a>
             </li>
           </ul>
         </div>
@@ -61,11 +59,9 @@ export default {
 
 nav {
   position: fixed;
-  /* padding: 0.4em 0 0.4em 0; */
   top: 0;
   background:var(--main-bg-color);
   width: 100%;
-  text-transform: uppercase;
   z-index: 20;
   margin: 0;
 }
@@ -73,12 +69,25 @@ nav {
   width: 80%;
   margin-left: 10%;
 }
-.navbar-brand{
-  /* filter: invert(3); */
-   padding: 0;
+.navbar{
+  border: 0;
+  border-radius: 0;
+}
+.navbar-header a{
+   padding: 15px;
+   font-family: garamond;
    margin: 0;
+   font-size: 1.8em;
+  font-weight: 800;
 }
 
+.navbar-header a::first-letter{
+  color: aqua;
+}
+
+.navbar-default{
+  border-color: transparent;
+}
 .navbar-brand img{
   width: 90px;
   height: 60px;
@@ -95,7 +104,7 @@ nav a:hover {
 } 
 @media (max-width:760px) {
   #navbar-collapse{
-    height:100vh;
+    height:auto;
     /* width: 50vw; */
 
   }

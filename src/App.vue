@@ -47,6 +47,44 @@ export default {
   --main-padding: 1em;
   --main-margin: 0.5em;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--main-bg-color);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--main-bg-color);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--main-bg-color);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-bg-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue; 
+}
+
+input:focus{
+  outline: none !important;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
