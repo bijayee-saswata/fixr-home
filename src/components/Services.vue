@@ -232,7 +232,7 @@
                   <div
                     v-if="reqSent"
                     style="color: green"
-                  >Your resonse has been submitted. You will receive a callback from us soon. :)</div>
+                  >Your resonse has been submitted. You will receive a callback from us soon. :) <p><b>Transaction Id: {{txnId}}</b></p></div>
                   <form action="#" v-else>
                     <p v-if="error" style="color:red;">{{errorMsg}}</p>
                     <div class="input-group">
@@ -353,7 +353,9 @@ export default {
       bServ: null,
       error: false,
       serv: null,
+      txnId : null,
       errorMsg: "",
+      orders : [],
       recommended: [
         {
           id: 1,
@@ -535,7 +537,30 @@ export default {
           service: this.bServ,
           name: this.bName,
           phone: this.bPhone,
-          Address: `${this.bPlot}, ${this.bLocality}, ${this.bCity}, ${this.bPin},${this.bDate}, ${this.bSlot}`
+          address: `${this.bPlot}, ${this.bLocality}, ${this.bCity}, ${this.bPin}`,
+          dateTime: `${this.bDate}, ${this.bSlot}`,
+          responseStatus : 'none',
+          price : 0
+        }).then(ref =>{
+          this.txnId = ref.id;
+          let order = {
+            service: this.bServ,
+            name: this.bName,
+            phone: this.bPhone,
+            txnId : this.txnId
+          }
+
+          let old = localStorage.getItem('orders');
+            if(old == null) {
+            this.orders = [];
+          } else {
+            this.orders = JSON.parse(old);
+          }
+            localStorage.setItem('orders', JSON.stringify(this.orders.concat(order)));
+        })
+        .catch(err => {
+          this.error = true;
+          this.errorMsg = err;
         });
         // alert("Request sent Successful...");
         this.reqSent = true;
@@ -549,6 +574,19 @@ export default {
       this.bLocality = '';
       this.reqSent = false;
       this.bServ = serv;
+      let date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+
+      if (month < 10) month = "0" + month;
+      if (day < 10) day = "0" + day;
+
+      let today = year + "-" + month + "-" + day;
+
+
+      this.bDate = today;
     }
   },
   

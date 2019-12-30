@@ -182,6 +182,7 @@ p {
     color: #fff;
     font-weight: 800;
     font-family: garamond;
+    font-style: italic;
   }
 .contact-info h3 {
   font-size: 1.5em;

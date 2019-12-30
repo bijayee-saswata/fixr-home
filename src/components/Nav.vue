@@ -40,6 +40,9 @@
             <li>
               <router-link to="/contact"><i class="fa fa-address-book-o" aria-hidden="true"></i> Contact</router-link>
             </li>
+            <li>
+              <router-link to="/history"><i class="fa fa-history" aria-hidden="true"></i> History</router-link>
+            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -56,7 +59,6 @@ export default {
 </script>
 
 <style scoped>
-
 nav {
   position: fixed;
   top: 0;
@@ -74,11 +76,12 @@ nav {
   border-radius: 0;
 }
 .navbar-header a{
-   padding: 15px;
+   padding: 15px 0 15px 0;
    font-family: garamond;
+   font-style: italic;
    margin: 0;
    font-size: 1.8em;
-  font-weight: 800;
+  font-weight: bolder;
 }
 
 .navbar-header a::first-letter{
