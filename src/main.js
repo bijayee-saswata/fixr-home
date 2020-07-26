@@ -13,13 +13,11 @@ import "bootstrap3/dist/css/bootstrap.css";
 const Services = ()=> import( './components/Services.vue')
 const Home = ()=> import('./components/HomePage.vue')
 const Contact = () => import('./components/Contact.vue')
-const Orders = () => import('./components/orders.vue')
 
 Vue.use(VueRouter);
 const routes = [
   {path: '/', component:Home},
   {path: '/services', component:Services},
-  {path: '/history', component:Orders},
   {path: '/contact', component:Contact}
 ]
 

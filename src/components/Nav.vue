@@ -16,11 +16,12 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">
-            <!-- <img
-              src="https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/fixr%20logo.png?alt=media&token=ff5a93a2-22bc-47cd-aa5f-e91a9d17d137"
+            <img id="logo"
+              src="https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/Final%20icon.png?alt=media&token=b1fd304a-f8c1-4948-8aff-7b17876c7087"
               alt="logo"
-            /> -->
-            Fixr
+              height="50"
+              width="50"
+            />
           </a>
         </div>
 
@@ -40,21 +41,72 @@
             <li>
               <router-link to="/contact"><i class="fa fa-address-book-o" aria-hidden="true"></i> Contact</router-link>
             </li>
-            <li>
-              <router-link to="/history"><i class="fa fa-history" aria-hidden="true"></i> History</router-link>
+            <li class="dropdown this-works">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Callback 
+              <b class="caret"></b></a>
+            <div class="dropdown-menu dropdown-form">
+              <p v-if="err" style="color: red">* Please fill all the fields.</p>
+              <p v-if="sent" style="padding: 10px;">We will reach to you soon. :)</p>
+              <form class="form-inline" role="form" v-if="!sent">
+                <div class="form-group">
+                  <input type="text" class="form-control" v-model="name" placeholder="*Name"
+                    >
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" v-model="phone" placeholder="*Phone"
+                    >
+                </div>
+                
+                  <button type="button" @click.prevent="handle" class="block">Send</button>
+                
+              </form>
+            </div>
             </li>
+           
           </ul>
         </div>
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container-->
+      <!-- Modal -->
+
     </nav>
 
 </template>
 
 <script>
+import db from "../firebaseinit";
 export default {
-  name: "Nav"
+  name: "Nav",
+  data(){
+    return{
+      name: "",
+      phone: null,
+      sent: false,
+      err: false
+    }
+  },
+  methods : {
+    handle(){
+      if(this.name && this.phone){
+        db.collection("phoneCalls").add({
+          name: this.name,
+          phone: this.phone,
+          
+        })
+        .then(() => {
+          this.sent = true;
+          this.name = "";
+          this.phone = "";
+       
+        })
+        .catch(error => alert(error));
+      }
+      else{
+        this.err = true;
+      }
+    }
+  }
 };
 </script>
 
@@ -67,6 +119,7 @@ nav {
   z-index: 20;
   margin: 0;
 }
+
 .nLayout{
   width: 80%;
   margin-left: 10%;
@@ -83,28 +136,30 @@ nav {
    font-size: 1.8em;
   font-weight: bolder;
 }
-
-.navbar-header a::first-letter{
-  color: aqua;
+.navbar-brand{
+  float: none;
 }
-
 .navbar-default{
   border-color: transparent;
 }
-.navbar-brand img{
-  width: 90px;
-  height: 60px;
+.navbar-default .navbar-brand{
+  color: #fff;
 }
 
-nav a{
+.navbar-default .navbar-nav > li > a{
   font-size: 1em;
   font-weight: 600;
-  color:#fff !important;
+  color:#fff;
 }
 nav a:hover {
   color: #000;
-
+  background-color: #e7e7e7 !important;
 } 
+
+.navbar-toggle {
+  margin-right: 0;
+}
+
 @media (max-width:760px) {
   #navbar-collapse{
     height:auto;
@@ -112,7 +167,34 @@ nav a:hover {
 
   }
 }
+ input{
+	position: relative;
+	width: 100%;
+	border: none;
+    outline: none;
+    font-size: 1em;
+    border-bottom: 1px solid rgba(0, 89, 255, 0.5);
+}
 
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  background-color:var(--main-bg-color);;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 5px; 
+  text-align: center;
+}
+.dropdown-form{
+  padding: 2em;
+  background-color: #ccc !important;
+}
+.dropdown-form .form-group{
+  margin : 5px 0 5px 0;
+}
  /* .searchbar{
     margin-top: 5px;
     }

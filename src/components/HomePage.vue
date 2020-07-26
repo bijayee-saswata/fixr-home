@@ -1,54 +1,35 @@
 <template>
-  <header>
-    <div class="layout" id="top">
+  <div class="layout" id="top">
 
-        <!-- Wrapper for slides -->
-        <div class="inner">
-            <img src="../assets/hbg.jpeg" class="img-responsive" alt />
-            <div class="row text">
-              <div class="col-md-12 col-xs-12 search">
-              <span class="col-md-3 col-md-offset-2 col-xs-5"><i class="fa fa-map-marker"></i>Bhubaneswar</span>  
-              <input type="text" class="col-md-5 col-xs-7" v-model="query" placeholder=" Search..." style="font-family: FontAwesome, Arial; font-style: normal">
-                <div class="option col-md-5 col-md-offset-5 col-xs-12">
-                  <ul>
-                    <li v-for="(match,index) in matches"
-                     :key="index"
-                      @click="selected(match.parent)"><i class="fa fa-search"></i>{{match.name}}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-        </div>
-
-      <ServiceComponent />
-
-      <!-- quality -->
-      <section class="quality slideanim">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-xs-4" >
-              <i class="fa fa-check-square-o fa-2x"></i>
-              <h3>Trusted Professionals</h3>
-            </div>
-            <div class="col-md-4 col-xs-4 middle">
-              <i class="fa fa-leaf fa-2x"></i>
-              <h3>Matched to Your Needs</h3>
-            </div>
-            <div class="col-md-4 col-xs-4">
-              <i class="fa fa-thumbs-up fa-2x"></i>
-              <h3>Hassle Free Service Delivery</h3>
+    <!-- Wrapper for slides -->
+    <div class="inner">
+        <img src="../assets/hbg.jpeg" class="img-responsive" alt />
+        <div class="row text">
+          <div class="col-md-12 col-xs-12 search">
+          <span class="col-md-3 col-md-offset-2 col-xs-5"><i class="fa fa-map-marker"></i>Bhubaneswar</span>  
+          <input type="text" class="col-md-5 col-xs-7" v-model="query" placeholder=" Search..." style="font-family: FontAwesome, Arial; font-style: normal">
+            <div class="option col-md-5 col-md-offset-5 col-xs-12">
+              <ul>
+                <li v-for="(match,index) in matches"
+                  :key="index"
+                  @click="selected(match.parent)"><i class="fa fa-search"></i>{{match.name}}</li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
-      
     </div>
-  </header>
+
+    <ServiceComponent />
+
+    <AppComponent/>
+    
+  </div>
 </template>
 
 <script>
 
 import ServiceComponent from "./serviceComponent.vue";
+import AppComponent from "./AppComponent";
 import lists from '../assets/lists';
 
 export default {
@@ -60,7 +41,8 @@ export default {
     }
   },
   components: {
-    ServiceComponent
+    ServiceComponent,
+    AppComponent
   },
 
   created() {
@@ -114,7 +96,7 @@ export default {
 
 .layout {
   padding-top: 3%;
-  /* margin-top: 6%; */
+  margin-top: 3%;
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -188,6 +170,7 @@ export default {
   cursor: pointer;
   padding: 10px;
   background: #f1f1f1;
+  font-size: 1em;
   
 }
 .search .option ul li i{
@@ -198,9 +181,7 @@ export default {
   font-weight: 800;
 }
 @media (max-width: 768px) {
-  .layout{
-    padding-top: 20%;
-  }
+
   .inner {
   width: 100%;
   margin-left: 0;
@@ -218,31 +199,11 @@ export default {
   .inner .text .search input{
    padding: 0.5em 0 0.5em 0;
   }
+  .appBannerImage img{
+    object-fit: contain;
+    max-width: 20em;
+}
 }
 
-/* quality */
-.quality .container {
-  margin-top: var(--main-margin);
-  margin-bottom: var(--main-margin);
-  /* border-right: 1px groove lightgray;
-  border-left: 1px groove lightgray; */
-  text-align: center;
-}
-.quality .col-md-4 h3 {
-  color: #000;
-  font-weight: 500;
-  font-size: 1em;
-}
-.quality .fa {
-  color: var(--main-bg-color);
-}
-.quality .middle {
-  border-left: 1px groove lightgray;
-  border-right: 1px groove lightgray;
-}
-@media (max-width:760px) {
-  .quality h3{
-    font-size: 0.5em;
-  }
-}
+
 </style>

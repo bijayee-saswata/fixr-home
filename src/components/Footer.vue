@@ -5,31 +5,22 @@
           
           <!-- End Col -->
           <div class="col-md-12 col-lg-12 col-xs-12" style="padding: 1%;">
-              <div class="col-md-3 col-xs-6">
+              <div class="col-md-4 col-xs-12">
                 <div class="contact-us">
                   <!-- End contact Icon -->
                   <div class="contact-info">
-                    <a href="/" class="footer-logo"><span style="color: aqua;">F</span>ixr</a>
-                  </div>
-                  <!-- End Contact Info -->
-                </div>
-                <!-- End Contact Us -->
-              </div>
-              <div class="col-md-3 col-xs-6">
-                <div class="contact-us">
-                  <div class="contact-icon">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </div>
-                  <!-- End contact Icon -->
-                  <div class="contact-info">
-                    <h3>Connect With Us</h3>
+                    <ul>
+                      <li><router-link to="/">Home</router-link></li>
+                      <li><router-link to="/services">Services</router-link></li>
+                      <li><router-link to="/contact">Contact</router-link></li>
+                    </ul>
                   </div>
                   <!-- End Contact Info -->
                 </div>
                 <!-- End Contact Us -->
               </div>
               <!-- End Col -->
-              <div class="col-md-3 col-xs-6">
+              <div class="col-md-4 col-xs-6">
                 <div class="contact-us">
                   <div class="contact-icon">
                     <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
@@ -42,7 +33,7 @@
                 </div>
                 <!-- End Contact Us -->
               </div>
-              <div class="col-md-3 col-xs-6">
+              <div class="col-md-4 col-xs-6">
                 <div class="contact-us">
                   <div class="contact-icon">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -68,17 +59,14 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 col-xs-12">
-              <span>Copyright © 2019, All Right Reserved FiXR</span>
+              <span>Copyright © 2020, All Right Reserved Fixr.</span>
             </div>
             <!-- End Col -->
             <div class="col-md-6 col-xs-12">
               <div class="copyright-menu">
                 <ul>
                   <li>
-                    <a href="#">Terms</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
                   </li>
                 </ul>
               </div>
@@ -92,11 +80,11 @@
       <!-- End Copyright -->
       <!-- Back to top -->
       <div id="back-to-top" class="back-to-top">
-        <button class="btn btn-success" title="Back to Top" style="display: block;">
           <a href="#top">
+        <button class="btn btn-success" title="Back to Top" style="display: block;">
             <i class="fa fa-angle-up"></i>
-          </a>
         </button>
+          </a>
       </div>
       <!-- End Back to top -->
     </footer>
@@ -177,15 +165,20 @@ p {
   /* margin-left: 75px; */
   color: #fff;
 }
+.contact-info ul{
+  list-style: none;
+  font-size: 1em;
+}
+.contact-info ul li{
+  display: inline-block;
+  padding-right:2em; 
+}
   .contact-info a{
-    font-size: 1.8em;
     color: #fff;
-    font-weight: 800;
-    font-family: garamond;
-    font-style: italic;
+    font-weight: 600;
   }
 .contact-info h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #fff;
   margin: 0;
   /* margin-bottom: 0; */
@@ -260,9 +253,19 @@ p {
   .contact-info h3 {
     font-size: 1em;
   }
-  .contact-info a{
-    font-size: 1.5em;
-    color: #fff;
+  .contact-info ul{
+    padding: 0;
+    font-size: 0.8em;
+  }
+  /* .contact-info ul li{
+    display: block;
+    text-align: left; 
+  } */
+  .contact-info {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
 }

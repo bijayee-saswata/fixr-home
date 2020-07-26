@@ -6,10 +6,10 @@
         <li
           v-for="service in services"
           v-bind:key="service.id"
-          @click="Services(service.header)"
+          @click="Services(service.id)"
         >
-          <img :src="service.img" alt="service" />
-          <p>{{service.header}}</p>
+          <img :src="service.url" :alt="service.id" />
+          <p>{{service.id}}</p>
         </li>
       </ul>
     </section>
@@ -48,62 +48,13 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
-
+import db from "../firebaseinit";
 export default {
   name: "ServicesComponent",
   data() {
     return {
       errorMsg: "",
-      services: [
-        {
-          id: 1,
-          header: "Makeup And Hairstyle",
-          subList: "",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fbeauty%26spa%2Fhaircut%2F2.png?alt=media&token=305b0706-02ea-4cb5-9b64-e4505a009d4c"
-        },
-        {
-          id: 2,
-          header: "Cleaning",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fcleaning%2F6.png?alt=media&token=07d9c1ea-19f3-48c4-b5aa-626d11188c06"
-        },
-        {
-          id: 3,
-          header: "Electronics And IT",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Felectronic_gadget%2F3.png?alt=media&token=103a7625-b6f8-4ad3-8a52-494163e77626"
-        },
-        {
-          id: 4,
-          header: "Repairing And Renovation",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fhouse_renovation%2Fpainter%2F2.png?alt=media&token=cb28e0b2-c77b-4c96-a919-29c1d34bec9d"
-        },
-        {
-          id: 5,
-          header: "Home Appliances",
-          img: "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fhouse_appliance%2F2.png?alt=media&token=8c4e37c1-45ee-4477-97cc-8671fb0243be"
-        },
-        {
-          id: 6,
-          header: "Corporate Service",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Findustry_service%2Fsecurity%2F3.png?alt=media&token=7bd03af8-fdff-4648-8dc6-8434e42ff321"
-        },
-        {
-          id: 7,
-          header: "Packer And Mover",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fpackers%26movers%2F10.png?alt=media&token=a0c4b8f9-b961-4449-afbf-752661997f44"
-        },
-        {
-          id: 8,
-          header: "Event Management",
-          img:
-            "https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/cliparts%2Fevent_management%2Fparty%26event%2F1.png?alt=media&token=9fb434d5-a620-46a1-9928-80dc4591f387"
-        }
-      ],
+      services: [],
       recommended: [
         {
           id: 1,
@@ -166,8 +117,8 @@ export default {
     $(".slider-nav").not('.slick-initialized').slick({
       slidesToShow: 4,
       slidesToScroll: 1,
-      autoplay: false,
-      autoplaySpeed: 2000,
+      autoplay: true,
+      autoplaySpeed: 2500,
       focusOnSelect: true,
       responsive: [
         {
@@ -195,7 +146,22 @@ export default {
         }
       ]
     });
-  }
+  },
+    created(){
+      db.collection("ServiceTypes").get().then((docs)=>{
+        docs.forEach(element => {
+          if(element.id == "Others"){
+            return;
+          }
+          let data = {
+            id : element.id,
+            status : element.data().status,
+            url : element.data().weburl
+          }
+          this.services.push(data);
+        });
+    })
+  },
 };
 </script>
 

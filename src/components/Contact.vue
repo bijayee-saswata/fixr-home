@@ -1,25 +1,36 @@
 <template>
-  <div>
-    <div class="container-fluid card">
-      <div class="col-md-12 col-lg-12 col-xs-12">
-        <div class="contact-heading">
-          <img src="../assets/con.jpeg" alt="Contact Us">
-        </div>
+  <main>
+    <div id="contactBanner">
+      <div class="contact-heading">
+        <img src="../assets/con.jpeg" alt="Contact Us">
       </div>
-      <div class="col-md-6 col-lg-6 col-xs-12">
-          <img src="../assets/contact.png" alt="Contact us">
+    </div>
+    
+    <div class="container">
+      <div class="col-md-4 col-lg-4 col-xs-12 call">
+        <i class="fa fa-mobile" aria-hidden="true"></i>
+        <h2>Call Us</h2>
+        <h4>+91 9090022001</h4>
+        <h4>+91 6370971229</h4>
       </div>
-      <div class="col-md-6 col-lg-4 col-lg-offset-1 col-xs-12" id="formBox">
+      <div class="col-md-4 col-lg-4 col-xs-12 email">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        <h2>Write Us</h2>
+        <h4>care@fixr.in</h4>
+      </div>
+      
+      <div class="col-md-4 col-lg-4 col-xs-12" id="formBox">
+        <h2>Send Us a Message</h2>
+        <p v-if="err" style="color:red">Please fill required(*) form.</p>
         <form name="contact">
           <div class="row">
-            <h2>Send Us a Message</h2>
             <div class="col-sm-12 form-group">
               <input
                 class="form-control"
                 id="name"
                 name="name"
                 v-model="form.name"
-                placeholder="Name"
+                placeholder="*Name"
                 type="text"
                 required
               />
@@ -29,7 +40,7 @@
                 class="form-control"
                 id="phNum"
                 name="phone"
-                placeholder="Phone No."
+                placeholder="*Phone No."
                 v-model="form.phone"
                 type="text"
                 required
@@ -37,7 +48,7 @@
             </div>
             <div class="col-sm-12 form-group">
               <select name="msgType" id="" class="form-control" v-model="form.msgType">
-                <option value="Complaint">Complaint</option>
+                <option value="Complaint">Customer Care</option>
                 <option value="Partner">Be a Partner</option>
                 <option value="Others">Others</option>
               </select>
@@ -48,7 +59,7 @@
             id="comments"
             v-model="form.message"
             name="message"
-            placeholder="Message"
+            placeholder="Message (optional)"
             rows="5"
           ></textarea>
           <br />
@@ -58,22 +69,28 @@
                 class="btn btn-primary"
                 type="submit"
                 @click.prevent="handleSubmit"
-              >Send</button>
+              >Submit</button>
             </div>
           </div>
         </form>
       </div>
-      
     </div>
-  </div>
+
+    <AppComponent/>
+  </main>
 </template>
 
 <script>
+import AppComponent from "./AppComponent";
 import db from "../firebaseinit";
 export default {
   name: "Contact",
+  components : {
+    AppComponent
+  },
   data() {
     return {
+      err: false,
       form: {
         name: "",
         phone: "",
@@ -84,6 +101,7 @@ export default {
   },
   methods: {
     handleSubmit() {
+      if(this.form.name && this.form.phone){
     db.collection("feedBacks").add({
           name: this.form.name,
           phone: this.form.phone,
@@ -99,66 +117,45 @@ export default {
         })
         .catch(error => alert(error));
     }
+    else{
+      this.err = true;
+    }
+    }
   }
 };
 </script>
 
 <style scoped>
-.card {
-  padding: 3.5% 0 0 0;
-  width: 80vw;
-  margin-left: 10vw;
-  
+#contactBanner img {
+  width: 100%;
+  /* object-fit: contain; */
+  height: 50vh;
 }
-.col-md-12{
-  padding: 0;
-}
-/* .card >.col-md-6 {
-  margin: auto 0;
-} */
-.card >.col-md-6>img{
-  width: 50%;
-  margin-top: 5%;
-  /* height: 50%; */
+.container {
+  padding: 2em 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 #formBox {
   /* background-color: rgb(226, 226, 226); */
   background-image: linear-gradient(var(--main-bg-color), rgb(110, 202, 255));
-  padding: 2em;
+  /* padding: 2em; */
   border-radius: 5%;
   box-shadow: 1em 1em 1em rgba(0, 0, 0, 0.2);
-  padding: 2% 3% 3% 3%;
-  margin: var(--main-margin);
+  /* padding: 2% 3% 3% 3%; */
+  /* margin: var(--main-margin); */
 }
-#formBox h2{
-  padding-bottom: 3%;
-  margin: 0%;
+.call i, .email i {
+  font-size: 10em;
 }
-#formBox input{
-  padding: 5%;
+.call h2, .email h2 {
+  font-weight: 600;
 }
-@media (max-width: 768px) {
-  .card {
-    padding-top: 20%;
+@media (max-width: 576px) {
+  .container {
+    display: block;
   }
-  #formBox{
-    padding: 5%;
-  }
-  #formBox h2{
-    font-size: 1.5em;
-  }
-  #formBox input{
-  padding: 2%;
-  margin: 0;
 }
-}
-.btn{
-  width: 100%;
-  padding: 2%;
-}
-.contact-heading img{
-  width: 100%;
-  height: 40vh;
-  padding: 0;
-}
+
 </style>
