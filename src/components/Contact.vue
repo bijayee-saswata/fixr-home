@@ -1,77 +1,62 @@
 <template>
   <main>
-    <div id="contactBanner">
+    <div id="contactBanner" v-if="!loading">
       <div class="contact-heading">
-        <img src="../assets/con.jpeg" alt="Contact Us">
+        <img :src="bannerImage" alt="Contact Us">
       </div>
     </div>
-    
-    <div class="container">
-      <div class="col-md-4 col-lg-4 col-xs-12 call">
+    <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true" v-else></i>
+    <div class="flex">
+      <div class="call">
         <i class="fa fa-mobile" aria-hidden="true"></i>
         <h2>Call Us</h2>
         <h4>+91 9090022001</h4>
         <h4>+91 6370971229</h4>
       </div>
-      <div class="col-md-4 col-lg-4 col-xs-12 email">
+      <div class="email">
         <i class="fa fa-paper-plane" aria-hidden="true"></i>
         <h2>Write Us</h2>
         <h4>care@fixr.in</h4>
       </div>
       
-      <div class="col-md-4 col-lg-4 col-xs-12" id="formBox">
+      <div class="SMS" id="formBox">
         <h2>Send Us a Message</h2>
         <p v-if="err" style="color:red">Please fill required(*) form.</p>
         <form name="contact">
-          <div class="row">
-            <div class="col-sm-12 form-group">
-              <input
-                class="form-control"
-                id="name"
-                name="name"
-                v-model="form.name"
-                placeholder="*Name"
-                type="text"
-                required
-              />
-            </div>
-            <div class="col-sm-12 form-group">
-              <input
-                class="form-control"
-                id="phNum"
-                name="phone"
-                placeholder="*Phone No."
-                v-model="form.phone"
-                type="text"
-                required
-              />
-            </div>
-            <div class="col-sm-12 form-group">
-              <select name="msgType" id="" class="form-control" v-model="form.msgType">
-                <option value="Complaint">Customer Care</option>
-                <option value="Partner">Be a Partner</option>
-                <option value="Others">Others</option>
-              </select>
-            </div>
-          </div>
+          <input
+            class="form-control"
+            name="name"
+            v-model="form.name"
+            placeholder="*Name"
+            type="text"
+            required
+          />
+          <input
+            class="form-control"
+            name="phone"
+            placeholder="*Phone No."
+            v-model="form.phone"
+            type="text"
+            required
+          />
+          <select name="msgType" class="form-control" v-model="form.msgType">
+            <option value="Complaint">Customer Care</option>
+            <option value="Partner">Be a Partner</option>
+            <option value="Others">Others</option>
+          </select>
           <textarea
             class="form-control"
-            id="comments"
             v-model="form.message"
             name="message"
             placeholder="Message (optional)"
             rows="5"
           ></textarea>
           <br />
-          <div class="row">
-            <div class="col-sm-12 form-group">
               <button
                 class="btn btn-primary"
                 type="submit"
                 @click.prevent="handleSubmit"
               >Submit</button>
-            </div>
-          </div>
         </form>
       </div>
     </div>
@@ -82,7 +67,7 @@
 
 <script>
 import AppComponent from "./AppComponent";
-import db from "../firebaseinit";
+import {db, storage} from "../firebaseinit";
 export default {
   name: "Contact",
   components : {
@@ -91,6 +76,8 @@ export default {
   data() {
     return {
       err: false,
+      loading : true,
+      bannerImage : '',
       form: {
         name: "",
         phone: "",
@@ -121,6 +108,12 @@ export default {
       this.err = true;
     }
     }
+  },
+  created () {
+     storage.ref().child('Imageforwebsite/03.contact us/Picture6.png').getDownloadURL().then((img) => {
+      this.loading = false;
+      this.bannerImage = img;     
+  });
   }
 };
 </script>
@@ -128,34 +121,65 @@ export default {
 <style scoped>
 #contactBanner img {
   width: 100%;
-  /* object-fit: contain; */
   height: 50vh;
+  object-fit: fill;
 }
-.container {
+.flex {
   padding: 2em 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
-#formBox {
-  /* background-color: rgb(226, 226, 226); */
-  background-image: linear-gradient(var(--main-bg-color), rgb(110, 202, 255));
-  /* padding: 2em; */
+.call {
+  width: 100%;
+}
+.email {
+  width: 100%;
+}
+.SMS {
+  width: 100%;
+  background-image: linear-gradient(rgb(51, 0, 85), rgb(208, 126, 255));
   border-radius: 5%;
   box-shadow: 1em 1em 1em rgba(0, 0, 0, 0.2);
-  /* padding: 2% 3% 3% 3%; */
-  /* margin: var(--main-margin); */
+}
+.SMS h2 {
+  color: #fafafa;
+  font-size: 1.5em;
+  padding: 10px;
+  margin: 0;
 }
 .call i, .email i {
   font-size: 10em;
+  max-width: 10em;
+  color: purple;
 }
 .call h2, .email h2 {
   font-weight: 600;
+} 
+input, textarea, select {
+  margin: 10px 0;
+}
+form {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 @media (max-width: 576px) {
-  .container {
+  .flex {
     display: block;
   }
+  #contactBanner img {
+  width: 100%;
+  height: auto;
+  object-fit: contain !important;
 }
-
+.call i, .email i {
+  font-size: 8em;
+}
+}
+.fa-spinner {
+  color: var(--main-bg-color);
+}
 </style>

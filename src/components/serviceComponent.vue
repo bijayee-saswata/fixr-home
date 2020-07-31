@@ -48,12 +48,13 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
-import db from "../firebaseinit";
+import {db} from "../firebaseinit";
 export default {
   name: "ServicesComponent",
   data() {
     return {
       errorMsg: "",
+      isLoading : false,
       services: [],
       recommended: [
         {
@@ -108,10 +109,15 @@ export default {
   methods: {
     Services(serv) {
       serv= serv.replace(/ /g,'');
-      this.$router.push({ path: `/services/#${serv}` })
+      this.$router.push({ name: 'services', params: {refName: serv }});
     }
   },
-  mounted() {
+  beforeUpdate() {
+     if ($('.slider-nav').hasClass('slick-initialized')) {
+        $('.slider-nav').slick('unslick');
+    }
+  },
+  updated() {
     /* eslint-disable */
 
     $(".slider-nav").not('.slick-initialized').slick({
@@ -160,6 +166,7 @@ export default {
           }
           this.services.push(data);
         });
+        this.isLoading = true;
     })
   },
 };
@@ -202,6 +209,9 @@ export default {
 .wrapper li:hover{
   font-weight: 800;
   background-color: #ccc;
+}
+.fa-spinner {
+  color: var(--main-bg-color);
 }
 @media (max-width: 768px) {
   .wrapper {

@@ -78,15 +78,6 @@
         <!-- End Copyright Container -->
       </div>
       <!-- End Copyright -->
-      <!-- Back to top -->
-      <div id="back-to-top" class="back-to-top">
-          <a href="#top">
-        <button class="btn btn-success" title="Back to Top" style="display: block;">
-            <i class="fa fa-angle-up"></i>
-        </button>
-          </a>
-      </div>
-      <!-- End Back to top -->
     </footer>
 </template>
 
@@ -209,47 +200,11 @@ p {
   padding-left: 20px;
 }
 
-.back-to-top {
-  position: relative;
-  z-index: 2;
-}
-.back-to-top .btn-success {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-color: #fff;
-  background-color:var(--main-bg-color);
-  display: none;
-  z-index: 999;
-  -webkit-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-.back-to-top .btn-success a i {
-  color: #fff;
-  font-size: 1.3em;
-  font-weight: bolder;
-}
-.back-to-top .btn-success:hover {
-  cursor: pointer;
-  background: #fa6742;
-  border-color: #fa6742;
-}
-.contact {
-  color: #878787;
-  cursor: pointer;
-}
 .contact-heading {
   margin: 5%;
   color: var(--main-txt-color);
 }
 @media (max-width: 768px) {
-  footer {
-    margin-top: 15%;
-  }
   .contact-info h3 {
     font-size: 1em;
   }
@@ -257,10 +212,6 @@ p {
     padding: 0;
     font-size: 0.8em;
   }
-  /* .contact-info ul li{
-    display: block;
-    text-align: left; 
-  } */
   .contact-info {
     display: flex;
     margin: 0 auto;

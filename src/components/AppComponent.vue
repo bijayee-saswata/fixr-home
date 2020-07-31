@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="appBannerImage">
-          <img src="../assets/fixr_nexus5x-portrait.png" alt="Mobile app">
+          <img :src="appImage.i" alt="Mobile app">
         </div>
       </div>
     </section>
@@ -25,15 +25,15 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-xs-4" >
-            <i class="fa fa-check-square-o fa-2x"></i>
+            <img src="../assets/why1.png" alt="Verified">
             <h3>Verified Professionals</h3>
           </div>
           <div class="col-md-4 col-xs-4 middle">
-            <i class="fa fa-leaf fa-2x"></i>
+            <img src="../assets/why3.png" alt="Assurance">
             <h3>Rework Assurance</h3>
           </div>
           <div class="col-md-4 col-xs-4">
-            <i class="fa fa-thumbs-up fa-2x"></i>
+            <img src="../assets/why4.png" alt="Professional">
             <h3>Professional Support</h3>
           </div>
         </div>
@@ -43,8 +43,17 @@
 </template>
 
 <script>
+import {storage} from '../firebaseinit';
 export default {
-    name : "AppComponent"
+    name : "AppComponent",
+    data(){
+    return{
+      appImage : ''
+    }
+  },
+    created () {
+      this.appImage = storage.ref().child('Imageforwebsite/0.homepage/3.homepage/Picture9.png').getDownloadURL();
+    }
 }
 </script>
 
@@ -85,7 +94,7 @@ export default {
 }
 .appBannerImage img{
   object-fit: contain;
-  max-width: 30em;
+  max-width: 28em;
 }
 @media (max-width:570px) {
   .appLink {
@@ -132,10 +141,11 @@ export default {
 .quality .col-md-4 h3 {
   color: #000;
   font-weight: 500;
-  font-size: 1em;
+  font-size: 1.2em;
 }
-.quality .fa {
-  color: var(--main-bg-color);
+.quality img {
+  max-height: 5em;
+  object-fit: contain;
 }
 .quality .middle {
   border-left: 1px groove lightgray;

@@ -48,16 +48,16 @@ export default {
   --main-margin: 0.5em;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--main-bg-color);
+  color: rgb(173, 173, 173);
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: var(--main-bg-color);
+  color: rgb(173, 173, 173);
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: var(--main-bg-color);
+  color: rgb(173, 173, 173);
 }
 /* width */
 ::-webkit-scrollbar {
@@ -104,7 +104,7 @@ input[type=number] {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   scroll-behavior: smooth;
-  background: #f1f3f6;
+  background: #fafafa;
 }
 .footer{
   margin-top: 3%;

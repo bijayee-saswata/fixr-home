@@ -16,11 +16,10 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">
+          <img src="../assets/logo.png" alt="logo">
             <img id="logo"
-              src="https://firebasestorage.googleapis.com/v0/b/fixr-3b596.appspot.com/o/Final%20icon.png?alt=media&token=b1fd304a-f8c1-4948-8aff-7b17876c7087"
-              alt="logo"
-              height="50"
-              width="50"
+              src="../assets/Mrfixr.png"
+              alt="logoText"
             />
           </a>
         </div>
@@ -75,7 +74,7 @@
 </template>
 
 <script>
-import db from "../firebaseinit";
+import {db} from "../firebaseinit";
 export default {
   name: "Nav",
   data(){
@@ -112,12 +111,13 @@ export default {
 
 <style scoped>
 nav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  background:var(--main-bg-color);
+  background:#fff;
   width: 100%;
   z-index: 20;
   margin: 0;
+  height: 60px;
 }
 
 .nLayout{
@@ -129,15 +129,20 @@ nav {
   border-radius: 0;
 }
 .navbar-header a{
-   padding: 15px 0 15px 0;
-   font-family: garamond;
-   font-style: italic;
-   margin: 0;
-   font-size: 1.8em;
+  font-family: garamond;
+  font-style: italic;
+  margin: 0;
+  font-size: 1.8em;
   font-weight: bolder;
+}
+.navbar-header img {
+  max-height: 60px;
+  object-fit: contain;
 }
 .navbar-brand{
   float: none;
+  display: flex;
+  align-items: center;
 }
 .navbar-default{
   border-color: transparent;
@@ -149,7 +154,7 @@ nav {
 .navbar-default .navbar-nav > li > a{
   font-size: 1em;
   font-weight: 600;
-  color:#fff;
+  color:#000;
 }
 nav a:hover {
   color: #000;
@@ -163,9 +168,16 @@ nav a:hover {
 @media (max-width:760px) {
   #navbar-collapse{
     height:auto;
-    /* width: 50vw; */
-
+    background-color: #fff;
+    width: 100%;
   }
+  .navbar-header img {
+    max-height: 30px;
+    object-fit: contain;
+}
+.navbar-brand {
+  padding: 0;
+}
 }
  input{
 	position: relative;
