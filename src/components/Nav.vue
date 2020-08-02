@@ -39,12 +39,7 @@
               <i class="fa fa-address-book-o" aria-hidden="true"></i> Contact
             </router-link>
           </li>
-          <li
-            data-toggle="modal"
-            data-target="#loginModal"
-            class="signIn"
-            v-if="!loggedIn"
-          >
+          <li data-toggle="modal" data-target="#loginModal" class="signIn" v-if="!loggedIn">
             <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In
           </li>
           <li class="dropdown-toggle" data-toggle="dropdown" v-if="loggedIn">
@@ -53,7 +48,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li>
+              <li @click="myOrders">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>My Orders
               </li>
               <li @click="signOut">
@@ -68,30 +63,16 @@
             </a>
             <div class="dropdown-menu dropdown-form">
               <p v-if="err" style="color: red">* Please fill all the fields.</p>
-              <p v-if="sent" style="padding: 10px;">
-                We will reach to you soon. :)
-              </p>
+              <p v-if="sent" style="padding: 10px;">We will reach to you soon. :)</p>
               <form class="form-inline" role="form" v-if="!sent">
                 <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="name"
-                    placeholder="*Name"
-                  />
+                  <input type="text" class="form-control" v-model="name" placeholder="*Name" />
                 </div>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="phone"
-                    placeholder="*Phone"
-                  />
+                  <input type="text" class="form-control" v-model="phone" placeholder="*Phone" />
                 </div>
 
-                <button type="button" @click.prevent="handle" class="block">
-                  Send
-                </button>
+                <button type="button" @click.prevent="handle" class="block">Send</button>
               </form>
             </div>
           </li>
@@ -106,12 +87,12 @@
 </template>
 
 <script>
-import { db, auth } from "../firebaseinit";
 import Login from "./Login.vue";
+import { db, auth } from "../firebaseinit";
 export default {
   name: "Nav",
   components: {
-    Login,
+    Login
   },
   data() {
     return {
@@ -120,7 +101,7 @@ export default {
       sent: false,
       loggedIn: false,
       userName: "Hello",
-      err: false,
+      err: false
     };
   },
   methods: {
@@ -129,14 +110,14 @@ export default {
         db.collection("phoneCalls")
           .add({
             name: this.name,
-            phone: this.phone,
+            phone: this.phone
           })
           .then(() => {
             this.sent = true;
             this.name = "";
             this.phone = "";
           })
-          .catch((error) => alert(error));
+          .catch(error => alert(error));
       } else {
         this.err = true;
       }
@@ -147,22 +128,26 @@ export default {
         .then(() => {
           this.loggedIn = false;
         })
-        .catch((error) => {
+        .catch(error => {
           alert("Something went wrong...");
           console.log(error);
         });
     },
+    myOrders() {
+      this.$router.push({ name: "myOrders" });
+    }
   },
   created() {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         this.loggedIn = true;
+        this.userName = user.displayName;
       } else {
         this.loggedIn = false;
       }
     });
-  },
+  }
 };
 </script>
 
@@ -228,15 +213,14 @@ nav a:hover {
 .navbar-toggle {
   margin-right: 0;
 }
+
 .dropdown-menu li {
-  padding: 5px;
+  padding: 3px 20px;
   cursor: pointer;
 }
+
 .dropdown-menu li:hover {
-  background: #ccc;
-}
-.dropdown-menu i {
-  padding: 5px;
+  background-color: #ccc;
 }
 
 @media (max-width: 760px) {

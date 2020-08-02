@@ -12,12 +12,8 @@
               data-target="#modal"
               @click="addServices()"
               v-if="loggedIn"
-            >
-              Order Now
-            </button>
-            <span v-if="!loggedIn">
-              Sign In To Order
-            </span>
+            >Order Now</button>
+            <span v-if="!loggedIn">Sign In To Order</span>
           </div>
         </div>
         <div class="serviceText panel panel-default">
@@ -57,15 +53,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLongTitle">
-                Order Details
-              </h3>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
+              <h3 class="modal-title" id="exampleModalLongTitle">Order Details</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -73,10 +62,7 @@
               <div id="onlineReq">
                 <div class="well">
                   <div v-if="reqSent" style="color: green">
-                    <i
-                      class="fa fa-check-circle-o fa-3x"
-                      aria-hidden="true"
-                    ></i>
+                    <i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>
                     <h2>Order Successful.</h2>
                     <h4>You will receive a callback from us soon. &#x1F60A;</h4>
                     <p>
@@ -144,13 +130,7 @@
                         required
                       />
                       <div>
-                        <input
-                          type="date"
-                          class="btn btn-sm"
-                          name="date"
-                          v-model="bDate"
-                          required
-                        />
+                        <input type="date" class="btn btn-sm" name="date" v-model="bDate" required />
                         <select name="slot" v-model="bSlot" class="btn btn-sm">
                           <option value="10AM-12PM">10AM - 12PM</option>
                           <option value="10AM-12PM">12PM - 02PM</option>
@@ -164,17 +144,13 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
-                Close
-              </button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
               <button
                 type="button"
                 class="btn btn-success"
                 v-if="!reqSent"
                 @click="requestCall"
-              >
-                Book Now
-              </button>
+              >Book Now</button>
             </div>
           </div>
         </div>
@@ -187,6 +163,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import { db, auth } from "../firebaseinit";
 import AppComponent from "./AppComponent";
 export default {
@@ -194,15 +171,15 @@ export default {
   props: {
     slug: {
       type: String,
-      required: true,
+      required: true
     },
     parent: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   components: {
-    AppComponent,
+    AppComponent
   },
   data() {
     return {
@@ -229,7 +206,7 @@ export default {
       bSlot: "10AM-12PM",
       error: false,
       txnId: null,
-      errorMsg: "",
+      errorMsg: ""
     };
   },
   methods: {
@@ -243,23 +220,32 @@ export default {
         this.errorMsg = "Please enter 10 digit mobile number.";
         return false;
       } else {
-        db.collection("callBack")
-          .add({
-            service: this.slug,
+        const data = {
+          userId: auth.currentUser.uid,
+          serviceAddress: {
             name: this.bName,
             phone: this.bPhone,
-            address: `${this.bPlot}, ${this.bLocality}, ${this.bCity}, ${
-              this.bPin
-            }`,
-            dateTime: `${this.bDate}, ${this.bSlot}`,
-            responseStatus: "none",
+            pincode: this.bPin,
+            locality: this.bLocality,
+            areaAndStreet: this.bPlot
+          },
+          serviceDateandTime: `${this.bDate} (${this.bSlot})`,
+          serviceDetails: {
+            name: this.slug,
             price: this.price,
-          })
-          .then((ref) => {
+            img: this.image
+          },
+          transactionDate: firebase.firestore.FieldValue.serverTimestamp(),
+          responseStatus: "none",
+          paymentMode: "COD"
+        };
+        db.collection("Orders")
+          .add(data)
+          .then(ref => {
             this.txnId = ref.id;
             this.reqSent = true;
           })
-          .catch((err) => {
+          .catch(err => {
             this.error = true;
             this.errorMsg = err;
           });
@@ -284,7 +270,7 @@ export default {
       let today = year + "-" + month + "-" + day;
 
       this.bDate = today;
-    },
+    }
   },
   created() {
     db.collection("ServiceTypes")
@@ -292,7 +278,7 @@ export default {
       .collection("sub")
       .doc(this.slug)
       .get()
-      .then((doc) => {
+      .then(doc => {
         this.image = doc.data().weburl;
         this.status = doc.data().status;
         this.description = doc.data().desc;
@@ -305,8 +291,8 @@ export default {
         this.tncList = this.tnc.split(/[.]+/);
         this.isLoaded = true;
       })
-      .catch((err) => console.log(err));
-    auth.onAuthStateChanged((user) => {
+      .catch(err => console.log(err));
+    auth.onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         this.loggedIn = true;
@@ -314,7 +300,7 @@ export default {
         this.loggedIn = false;
       }
     });
-  },
+  }
 };
 </script>
 
