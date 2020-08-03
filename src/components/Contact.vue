@@ -1,11 +1,10 @@
 <template>
   <main>
-    <div id="contactBanner" v-if="!loading">
+    <div id="contactBanner">
       <div class="contact-heading">
-        <img :src="bannerImage" alt="Contact Us">
+        <img src="../assets/contact.png" alt="Contact Us" />
       </div>
     </div>
-    <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true" v-else></i>
     <div class="flex">
       <div class="call">
         <i class="fa fa-mobile" aria-hidden="true"></i>
@@ -18,7 +17,7 @@
         <h2>Write Us</h2>
         <h4>care@fixr.in</h4>
       </div>
-      
+
       <div class="SMS" id="formBox">
         <h2>Send Us a Message</h2>
         <p v-if="err" style="color:red">Please fill required(*) form.</p>
@@ -52,32 +51,27 @@
             rows="5"
           ></textarea>
           <br />
-              <button
-                class="btn btn-primary"
-                type="submit"
-                @click.prevent="handleSubmit"
-              >Submit</button>
+          <button class="btn btn-primary" type="submit" @click.prevent="handleSubmit">Submit</button>
         </form>
       </div>
     </div>
 
-    <AppComponent/>
+    <AppComponent />
   </main>
 </template>
 
 <script>
 import AppComponent from "./AppComponent";
-import {db, storage} from "../firebaseinit";
+import { db } from "../firebaseinit";
 export default {
   name: "Contact",
-  components : {
+  components: {
     AppComponent
   },
   data() {
     return {
       err: false,
-      loading : true,
-      bannerImage : '',
+      loading: true,
       form: {
         name: "",
         phone: "",
@@ -88,32 +82,26 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if(this.form.name && this.form.phone){
-    db.collection("feedBacks").add({
-          name: this.form.name,
-          phone: this.form.phone,
-          msgType: this.form.msgType,
-          message: this.form.message
-        })
-        .then(() => {
-          alert("Success!");
-          this.form.name = "";
-          this.form.phone = "";
-          this.form.type = "Complaint";
-          this.form.message = "";
-        })
-        .catch(error => alert(error));
+      if (this.form.name && this.form.phone) {
+        db.collection("feedBacks")
+          .add({
+            name: this.form.name,
+            phone: this.form.phone,
+            msgType: this.form.msgType,
+            message: this.form.message
+          })
+          .then(() => {
+            alert("Success!");
+            this.form.name = "";
+            this.form.phone = "";
+            this.form.type = "Complaint";
+            this.form.message = "";
+          })
+          .catch(error => alert(error));
+      } else {
+        this.err = true;
+      }
     }
-    else{
-      this.err = true;
-    }
-    }
-  },
-  created () {
-     storage.ref().child('Imageforwebsite/03.contact us/Picture6.png').getDownloadURL().then((img) => {
-      this.loading = false;
-      this.bannerImage = img;     
-  });
   }
 };
 </script>
@@ -150,15 +138,19 @@ export default {
   padding: 10px;
   margin: 0;
 }
-.call i, .email i {
+.call i,
+.email i {
   font-size: 10em;
   max-width: 10em;
   color: purple;
 }
-.call h2, .email h2 {
+.call h2,
+.email h2 {
   font-weight: 600;
-} 
-input, textarea, select {
+}
+input,
+textarea,
+select {
   margin: 10px 0;
 }
 form {
@@ -171,13 +163,14 @@ form {
     display: block;
   }
   #contactBanner img {
-  width: 100%;
-  height: auto;
-  object-fit: contain !important;
-}
-.call i, .email i {
-  font-size: 8em;
-}
+    width: 100%;
+    height: auto;
+    object-fit: contain !important;
+  }
+  .call i,
+  .email i {
+    font-size: 8em;
+  }
 }
 .fa-spinner {
   color: var(--main-bg-color);

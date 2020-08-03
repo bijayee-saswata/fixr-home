@@ -43,12 +43,13 @@
 
       <!-- <Modal /> -->
       <div
-        class="modal fade"
+        class="modal"
         id="modal"
         tabindex="-1"
         role="dialog"
         aria-labelledby="modal"
         aria-hidden="true"
+        data-backdrop="false"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">

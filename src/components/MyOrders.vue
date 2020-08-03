@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="noData" v-if="!loggedIn">
+    <div class="noData" v-if="!loggedIn || myOrders.length == 0">
       <h3>Please login or order something to see your orders. &#x1F60A;</h3>
     </div>
   </section>

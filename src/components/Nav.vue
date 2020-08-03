@@ -39,23 +39,6 @@
               <i class="fa fa-address-book-o" aria-hidden="true"></i> Contact
             </router-link>
           </li>
-          <li data-toggle="modal" data-target="#loginModal" class="signIn" v-if="!loggedIn">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In
-          </li>
-          <li class="dropdown-toggle" data-toggle="dropdown" v-if="loggedIn">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              {{ userName }}
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li @click="myOrders">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>My Orders
-              </li>
-              <li @click="signOut">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
-              </li>
-            </ul>
-          </li>
           <li class="dropdown this-works">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Callback
@@ -75,6 +58,23 @@
                 <button type="button" @click.prevent="handle" class="block">Send</button>
               </form>
             </div>
+          </li>
+          <li data-toggle="modal" data-target="#loginModal" class="signIn" v-if="!loggedIn">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In
+          </li>
+          <li class="dropdown-toggle" data-toggle="dropdown" v-if="loggedIn">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              {{ userPhone }}
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li @click="myOrders">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>My Orders
+              </li>
+              <li @click="signOut">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -100,7 +100,7 @@ export default {
       phone: null,
       sent: false,
       loggedIn: false,
-      userName: "Hello",
+      userPhone: "",
       err: false
     };
   },
@@ -142,7 +142,7 @@ export default {
       if (user) {
         // User is signed in.
         this.loggedIn = true;
-        this.userName = user.displayName;
+        this.userPhone = user.phoneNumber;
       } else {
         this.loggedIn = false;
       }
@@ -159,7 +159,6 @@ nav {
   width: 100%;
   z-index: 20;
   margin: 0;
-  height: 60px;
 }
 
 .nLayout {
@@ -178,20 +177,21 @@ nav {
   font-weight: bolder;
 }
 .signIn {
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #000;
   padding: 15px;
   cursor: pointer;
 }
-.navbar-header img {
-  max-height: 60px;
+.navbar-brand img {
+  max-height: 40px;
   object-fit: contain;
 }
 .navbar-brand {
   float: none;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .navbar-default {
   border-color: transparent;
@@ -201,7 +201,7 @@ nav {
 }
 
 .navbar-default .navbar-nav > li > a {
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #000;
 }
@@ -217,6 +217,7 @@ nav a:hover {
 .dropdown-menu li {
   padding: 3px 20px;
   cursor: pointer;
+  font-size: 1.2em;
 }
 
 .dropdown-menu li:hover {
@@ -235,6 +236,7 @@ nav a:hover {
   }
   .navbar-brand {
     padding: 0;
+    justify-content: left;
   }
 }
 input {

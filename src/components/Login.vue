@@ -23,12 +23,6 @@
               <i class="fa fa-check-circle-o fa-4x" aria-hidden="true" v-if="loggedIn"></i>
             </div>
             <div class="inputField" v-if="!smsSent && !loggedIn">
-              <div class="userName">
-                <span>
-                  <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                </span>
-                <input type="text" v-model="userName" name="username" placeholder="Enter username" />
-              </div>
               <div class="phoneInput">
                 <span>{{ countryCode }}</span>
                 <input
@@ -76,7 +70,6 @@ export default {
       loggedIn: false,
       smsSent: false,
       phoneNum: null,
-      userName: null,
       countryCode: "+91",
       otp: null
     };
@@ -112,18 +105,11 @@ export default {
                   db.collection("users")
                     .doc(user.uid)
                     .set({
-                      name: this.userName,
-                      phone: `+91${this.phoneNum}`
+                      phone: user.phoneNumber
                     });
                 }
               });
-            if (!user.displayName) {
-              user.updateProfile({
-                displayName: this.userName
-              });
-            }
           }
-          // ...
         })
         .catch(error => {
           alert(error);
