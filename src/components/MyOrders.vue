@@ -6,7 +6,7 @@
         <h2>My Orders</h2>
         <div class="panel" v-for="(order,index) in paginatedData" :key="index">
           <div class="order row">
-            <div class="image col-md-2 col-xs-6">
+            <div class="serviceImage col-md-2 col-xs-6">
               <img :src="order.serviceDetails.img" alt="Image" />
             </div>
             <div class="col-md-7 col-xs-6">
@@ -18,11 +18,11 @@
                 <span v-if="order.responseStatus == 'none'" class="initiated">
                   <i class="fa fa-hourglass-start" aria-hidden="true"></i> Initiated
                 </span>
-                <span v-if="order.responseStatus == 'processing'" class="processing">
+                <span v-if="order.responseStatus == 'accepted'" class="processing">
                   <i class="fa fa-hourglass-half" aria-hidden="true"></i> Processing
                 </span>
-                <span v-if="order.responseStatus == 'accepted'" class="delivered">
-                  <i class="ffa fa-hourglass-end" aria-hidden="true"></i> Delivered
+                <span v-if="order.responseStatus == 'delivered'" class="delivered">
+                  <i class="fa fa-hourglass-end" aria-hidden="true"></i> Delivered
                 </span>
                 <span v-if="order.responseStatus == 'rejected'" class="cancelled">
                   <i class="fa fa-hourglass-start" aria-hidden="true"></i> Cancelled
@@ -91,6 +91,7 @@ export default {
           .orderBy("transactionDate", "desc")
           .onSnapshot(
             datas => {
+              this.myOrders = [];
               datas.docs.map(data => {
                 this.myOrders.push(data.data());
               });
@@ -132,9 +133,12 @@ export default {
   text-align: center;
   padding: 1em;
 }
-.image img {
+.serviceImage img {
   width: 5em;
   height: 3.5em;
+}
+.price {
+  padding: 0;
 }
 .initiated {
   color: blue;
