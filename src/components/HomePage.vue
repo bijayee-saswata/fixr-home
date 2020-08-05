@@ -27,7 +27,6 @@
           </div>
         </div>
       </div>
-
       <ServiceComponent />
 
       <AppComponent />
@@ -38,13 +37,13 @@
 <script>
 import ServiceComponent from "./serviceComponent.vue";
 import AppComponent from "./AppComponent";
-import lists from "../assets/lists";
+import list from "../assets/list.js";
 
 export default {
   name: "Home",
   data() {
     return {
-      lists: [],
+      categories: [],
       query: ""
     };
   },
@@ -62,13 +61,13 @@ export default {
     matches() {
       if (this.query == "") return [];
 
-      return this.lists.filter(list => {
-        list.name.toLowerCase().includes(this.query.toLowerCase());
+      return this.categories.filter(category => {
+        return category.name.toLowerCase().includes(this.query.toLowerCase());
       });
     }
   },
   created() {
-    this.lists = lists;
+    this.categories = list;
   }
 };
 </script>

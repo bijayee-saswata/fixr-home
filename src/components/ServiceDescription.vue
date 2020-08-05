@@ -355,6 +355,9 @@ li::before {
 .tnc li:before {
   content: "\f05a";
 }
+.modal-body {
+  width: 90%;
+}
 
 @media (max-width: 570px) {
   #serviceDescription {
