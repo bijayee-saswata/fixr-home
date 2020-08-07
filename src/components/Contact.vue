@@ -62,6 +62,7 @@
 
 <script>
 import AppComponent from "./AppComponent";
+import firebase from "firebase";
 import { db } from "../firebaseinit";
 export default {
   name: "Contact",
@@ -88,7 +89,9 @@ export default {
             name: this.form.name,
             phone: this.form.phone,
             msgType: this.form.msgType,
-            message: this.form.message
+            message: this.form.message,
+            createdDate: firebase.firestore.FieldValue.serverTimestamp(),
+            status: "issue"
           })
           .then(() => {
             alert("Success!");
